@@ -1,6 +1,3 @@
-/* eslint-disable @typescript-eslint/ban-types */
-/* eslint-disable @typescript-eslint/no-loop-func */
-/* eslint-disable no-restricted-syntax */
 import { request } from 'umi';
 import { dateToUnix } from '@/utils/utils';
 import { getApiPrefix } from '@/utils/config';
@@ -46,11 +43,8 @@ export const requestQueryParams = (
 
   if (JSON.stringify(queryParams.filter) !== '{}') {
     for (const key in queryParams.filter) {
-      if (
-        Object.prototype.hasOwnProperty.call(queryParams.filter, key) &&
-        queryParams.filter[key]
-      ) {
-        params[key] = queryParams.filter[key].join(',');
+      if (Object.prototype.hasOwnProperty.call(queryParams.filter, key) && queryParams.filter[key]) {
+        params[key] = queryParams.filter[key]?.join(',');
       }
     }
   }
@@ -62,7 +56,6 @@ export const requestQueryParams = (
  * @param key 属性值
  * @param request
  */
-// eslint-disable-next-line @typescript-eslint/no-shadow
 export const requestPropertyToArray = <T>(key: string, request: T): T => {
   const name: string = `${key}[]`;
   const data: React.Key[] = request[key];
