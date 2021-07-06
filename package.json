@@ -8,6 +8,7 @@
     "build": "umi build",
     "deploy": "npm run build && npm run gh-pages",
     "dev": "npm run start:dev",
+    "mock": "npm run start:mock",
     "docker-hub:build": "docker build  -f Dockerfile.hub -t  ant-design-pro ./",
     "docker-prod:build": "docker-compose -f ./docker/docker-compose.yml build",
     "docker-prod:dev": "docker-compose -f ./docker/docker-compose.yml up",
@@ -29,7 +30,8 @@
     "precommit": "lint-staged",
     "prettier": "prettier -c --write \"src/**/*\"",
     "start": "cross-env UMI_ENV=dev umi dev",
-    "start:dev": "cross-env REACT_APP_ENV=dev MOCK=none UMI_ENV=dev umi dev",
+    "start:dev": "cross-env REACT_APP_ENV=dev UMI_ENV=dev HOST=127.0.0.1 PORT=9601 umi dev",
+    "start:mock": "cross-env REACT_APP_ENV=dev MOCK=none UMI_ENV=dev umi dev",
     "start:no-mock": "cross-env MOCK=none UMI_ENV=dev umi dev",
     "start:no-ui": "cross-env UMI_UI=none UMI_ENV=dev umi dev",
     "start:pre": "cross-env REACT_APP_ENV=pre UMI_ENV=dev umi dev",
@@ -149,8 +151,5 @@
       "CNAME",
       "create-umi"
     ]
-  },
-  "gitHooks": {
-    "commit-msg": "fabric verify-commit"
   }
 }
