@@ -11,8 +11,9 @@ import React, { useState } from 'react';
 import ProForm, { ProFormCaptcha, ProFormCheckbox, ProFormText } from '@ant-design/pro-form';
 import { useIntl, Link, history, FormattedMessage, SelectLang, useModel } from 'umi';
 import Footer from '@/components/Footer';
-import { login } from '@/services/ant-design-pro/api';
+import { login } from '@/services/server/login';
 import { getFakeCaptcha } from '@/services/ant-design-pro/login';
+import { setAuthorizeToken } from '@/utils/utils';
 
 import styles from './index.less';
 
@@ -47,8 +48,9 @@ const Login: React.FC = () => {
 
   const intl = useIntl();
 
-  const fetchUserInfo = async () => {
-    const userInfo = await initialState?.fetchUserInfo?.();
+  const fetchUserInfo = async (token: string) => {
+    const userInfo = await initialState?.fetchUserInfo?.(token);
+
     if (userInfo) {
       setInitialState({
         ...initialState,
@@ -61,19 +63,24 @@ const Login: React.FC = () => {
     setSubmitting(true);
     try {
       // 登录
-      const msg = await login({ ...values, type });
-      if (msg.status === 'ok') {
+      const response = await login({ ...values, type });
+      if (response && Object.prototype.hasOwnProperty.call(response, 'token')) {
+        setAuthorizeToken(response.token);
         const defaultloginSuccessMessage = intl.formatMessage({
           id: 'pages.login.success',
           defaultMessage: '登录成功！',
         });
         message.success(defaultloginSuccessMessage);
-        await fetchUserInfo();
+        await fetchUserInfo(response.token);
         goto();
         return;
       }
       // 如果失败去设置用户错误信息
-      setUserLoginState(msg);
+      setUserLoginState({
+        status: 'error',
+        type,
+        currentAuthority: 'admin',
+      });
     } catch (error) {
       const defaultloginFailureMessage = intl.formatMessage({
         id: 'pages.login.failure',

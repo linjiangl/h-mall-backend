@@ -13,6 +13,16 @@ export default {
       changeOrigin: true,
       pathRewrite: { '^': '' },
     },
+    '/backend/': {
+      target: 'http://127.0.0.1:9501',
+      changeOrigin: true,
+      pathRewrite: { '^': '' },
+    },
+    '/public/': {
+      target: 'http://127.0.0.1:9501',
+      changeOrigin: true,
+      pathRewrite: { '^': '' },
+    },
   },
   test: {
     '/api/': {

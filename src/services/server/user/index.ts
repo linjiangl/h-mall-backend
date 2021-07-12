@@ -1,4 +1,5 @@
 import { queryList, updated, queryInfo, http } from '@/utils/request';
+import { getAuthorizeToken } from '@/utils/utils';
 
 export async function list(requestParams: API.TableRequestParams) {
   return queryList('/user/list', requestParams);
@@ -12,12 +13,17 @@ export async function update(data: User.Detail) {
   return updated('/user/update', data);
 }
 
-export async function queryCurrent() {
-  return http('/authorize');
+export async function queryCurrentUser(token: string = '') {
+  return http(
+    '/authorize',
+    {},
+    {
+      Authorization: token || getAuthorizeToken(),
+    },
+  );
 }
 
 export async function queryNotices(): Promise<any> {
-  // eslint-disable-next-line @typescript-eslint/ban-types
   const data: object[] = [
     {
       id: '000000001',

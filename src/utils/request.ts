@@ -71,10 +71,11 @@ export const requestPropertyToArray = <T>(key: string, request: T): T => {
   return request;
 };
 
-export async function http(url: string, data: object = {}) {
+export async function http(url: string, data: object = {}, headers: Record<string, string> = {}) {
   return request(getApiPrefix() + url, {
     method: 'POST',
     data,
+    headers,
   });
 }
 
