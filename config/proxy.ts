@@ -30,6 +30,16 @@ export default {
       changeOrigin: true,
       pathRewrite: { '^': '' },
     },
+    '/backend/': {
+      target: '',
+      changeOrigin: true,
+      pathRewrite: { '^': '' },
+    },
+    '/public/': {
+      target: 'http://127.0.0.1:9501',
+      changeOrigin: true,
+      pathRewrite: { '^': '' },
+    },
   },
   pre: {
     '/api/': {

@@ -43,7 +43,7 @@ declare namespace API {
       [key?: string]: any;
     };
     sort?: Record<string, 'descend' | 'ascend' | null>;
-    filter?: Record<string, React.ReactText[]>;
+    filter?: Record<string, React.ReactText[] | null>;
   };
 
   export type RequestParams = {

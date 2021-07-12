@@ -1,4 +1,3 @@
-// eslint-disable-next-line @typescript-eslint/ban-types
 const config: Object = {
   mobile: new RegExp('^1\\d{10}$'),
   tel: new RegExp('^\\d{3,4}[ -]\\d{7,8}$'),
