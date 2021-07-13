@@ -9,9 +9,24 @@ declare namespace API {
     unreadCount: number;
   };
 
+  export type LoginParams = {
+    username?: string;
+    password?: string;
+    mobile?: string;
+    captcha?: string;
+    autoLogin?: boolean;
+    type?: string;
+  };
+
   export type LoginStateType = {
     status?: 'ok' | 'error';
     type?: string;
+    currentAuthority?: string;
+  };
+
+  type FakeCaptcha = {
+    code?: number;
+    status?: string;
   };
 
   export type NoticeIconData = {

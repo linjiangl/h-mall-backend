@@ -1,6 +1,6 @@
 import type { Settings as LayoutSettings } from '@ant-design/pro-layout';
 import { PageLoading } from '@ant-design/pro-layout';
-import { notification } from 'antd';
+import { notification, message } from 'antd';
 import type { RequestConfig, RunTimeLayoutConfig } from 'umi';
 import { history, Link } from 'umi';
 import RightContent from '@/components/RightContent';
@@ -8,9 +8,10 @@ import Footer from '@/components/Footer';
 import { queryCurrentUser } from '@/services/server/user';
 import { BookOutlined, LinkOutlined } from '@ant-design/icons';
 import { getEnvConfig } from '@/utils/env';
+import { getAuthorizeToken, removeAuthorizeToken, buildRouteUrl } from '@/utils/utils';
 
 const isDev = process.env.NODE_ENV === 'development';
-const loginPath = getEnvConfig().loginUrl;
+const loginPath = buildRouteUrl(getEnvConfig().loginUrl);
 
 /** 获取用户信息比较慢的时候会展示一个 loading */
 export const initialStateConfig = {
@@ -99,6 +100,30 @@ export const request: RequestConfig = {
     }
     throw error;
   },
+  credentials: 'include', // 默认请求是否带上cookie,
+  requestType: 'form',
+  timeout: 5000,
+  headers: {
+    Authorization: getAuthorizeToken(),
+  },
+  responseInterceptors: [
+    async (response: Response) => {
+      const blob = await response.clone().blob();
+      if (blob.type === 'application/json') {
+        blob.text().then((res) => {
+          if (response.status >= 400) {
+            const data = JSON.parse(res);
+            message.error(data.error);
+            if (response.status === 401) {
+              removeAuthorizeToken();
+              history.push(loginPath);
+            }
+          }
+        });
+      }
+      return response;
+    },
+  ],
 };
 
 // ProLayout 支持的api https://procomponents.ant.design/components/layout
@@ -107,7 +132,7 @@ export const layout: RunTimeLayoutConfig = ({ initialState }) => {
     rightContentRender: () => <RightContent />,
     disableContentMargin: false,
     waterMarkProps: {
-      content: initialState?.currentUser?.name,
+      content: initialState?.currentUser?.username,
     },
     footerRender: () => <Footer />,
     onPageChange: () => {
