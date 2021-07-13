@@ -3,7 +3,7 @@ import { PageContainer } from '@ant-design/pro-layout';
 import ProTable from '@ant-design/pro-table';
 import type { ProColumns, ActionType } from '@ant-design/pro-table';
 import { Button, message, Space } from 'antd';
-import { list, remove } from '@/services/goods/service';
+import { list, remove } from '@/services/server/goods/service';
 import { formatDate } from '@/utils/utils';
 import { PlusOutlined } from '@ant-design/icons';
 import FormPage from './components/FormPage';

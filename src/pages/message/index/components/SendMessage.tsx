@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { Select, Switch, message } from 'antd';
 import ProForm, { DrawerForm, ProFormText, ProFormTextArea } from '@ant-design/pro-form';
-import { create } from '@/services/message';
+import { create } from '@/services/server/message';
 
 const { Option } = Select;
 

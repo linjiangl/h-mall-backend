@@ -1,6 +1,6 @@
 import React, { useContext, useState } from 'react';
 import { Form, Radio } from 'antd';
-import { GoodsTimerStatus, GoodsStatus } from '@/services/goods';
+import { GoodsTimerStatus, GoodsStatus } from '@/services/server/goods';
 import FormTimer from './timer';
 import GoodsContext from '@/contexts/goods';
 

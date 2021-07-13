@@ -3,7 +3,7 @@ import { Input, message } from 'antd';
 import ProForm, { DrawerForm, ProFormText, ProFormRadio } from '@ant-design/pro-form';
 import { MobileOutlined, UserOutlined } from '@ant-design/icons';
 import { getPattern } from '@/utils/pattern';
-import { update } from '@/services/admin';
+import { update } from '@/services/server/admin';
 import ImageSingle from '@/components/Tools/Uploader/Image/Single';
 
 type ParamsProps = {

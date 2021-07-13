@@ -3,7 +3,6 @@ import { message } from 'antd';
 import ProForm, { DrawerForm, ProFormText, ProFormRadio } from '@ant-design/pro-form';
 import { initializesObjectData } from '@/utils/utils';
 import { create, update } from '@/services/server/goods/brand';
-
 import ImageSingle from '@/components/Tools/Uploader/Image/Single';
 
 type ParamsProps = {
@@ -12,7 +11,7 @@ type ParamsProps = {
   onCancel: (visible: boolean, reload: boolean) => void;
 };
 
-const defalutValues: Brand.Detail = {
+const defaultValue: Brand.Detail = {
   id: 0,
   name: '',
   logo: '',
@@ -22,7 +21,7 @@ const defalutValues: Brand.Detail = {
 const FormPage: React.FC<ParamsProps> = (props) => {
   const [form] = ProForm.useForm();
   const { detail, formVisible, onCancel } = props;
-  const [defaultDetail] = useState<Brand.Detail>(initializesObjectData(detail, defalutValues));
+  const [defaultDetail] = useState<Brand.Detail>(initializesObjectData(detail, defaultValue));
 
   const handleCreateOrUpdate = (formData: Brand.Detail) => {
     if (formData.id) {
@@ -46,13 +45,15 @@ const FormPage: React.FC<ParamsProps> = (props) => {
     <DrawerForm
       form={form}
       visible={formVisible}
-      title={(detail.id ? '编辑' : '创建') + '品牌'}
+      title={`${detail.id ? '编辑' : '创建'}品牌`}
       onVisibleChange={(visible) => {
         onCancel(visible, false);
       }}
       onFinish={async (values) => {
-        values.id = detail.id;
-        handleCreateOrUpdate(values);
+        handleCreateOrUpdate({
+          ...values,
+          id: detail.id,
+        });
       }}
       initialValues={defaultDetail}
       layout="horizontal"

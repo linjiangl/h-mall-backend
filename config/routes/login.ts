@@ -11,7 +11,7 @@ const LoginRouter: IRoute[] = [
       {
         name: 'login',
         path: envConfig.loginUrl,
-        component: './user/Login',
+        component: './user/login',
       },
     ],
   },

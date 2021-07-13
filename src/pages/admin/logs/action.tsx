@@ -3,7 +3,7 @@ import { PageContainer } from '@ant-design/pro-layout';
 import ProTable from '@ant-design/pro-table';
 import type { ProColumns, ActionType } from '@ant-design/pro-table';
 import { message, Alert, Button } from 'antd';
-import { list, remove, LogType } from '@/services/admin/logs';
+import { list, remove, LogType } from '@/services/server/admin/logs';
 import { formatDate } from '@/utils/utils';
 import BatchAction from '@/components/Tools/Table/Footer/BatchAction';
 import ConfirmDelete from '@/components/Tools/Modal/confirm/delete';

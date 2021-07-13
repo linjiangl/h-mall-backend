@@ -3,7 +3,7 @@ import { message } from 'antd';
 import ProForm, { DrawerForm, ProFormText, ProFormRadio } from '@ant-design/pro-form';
 import { initializesObjectData } from '@/utils/utils';
 import SpaceValues from './SpecValues';
-import { create, update } from '@/services/goods/spec';
+import { create, update } from '@/services/server/goods/spec';
 
 type ParamsProps = {
   formVisible: boolean;

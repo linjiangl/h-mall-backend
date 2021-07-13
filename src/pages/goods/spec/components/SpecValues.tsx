@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import type { ProColumns } from '@ant-design/pro-table';
 import { Slider } from 'antd';
 import { EditableProTable } from '@ant-design/pro-table';
-import { create, update, remove, listBySpecId } from '@/services/goods/SpecValues';
+import { create, update, remove, listBySpecId } from '@/services/server/goods/SpecValues';
 import { generateEditTableId } from '@/utils/utils';
 
 type ParamsProps = {

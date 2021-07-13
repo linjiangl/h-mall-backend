@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import ProForm, { DrawerForm, ProFormText, ProFormTextArea } from '@ant-design/pro-form';
 import { message } from 'antd';
 import { initializesObjectData } from '@/utils/utils';
-import { create, update } from '@/services/goods/service';
+import { create, update } from '@/services/server/goods/service';
 import FormSotring from '@/components/Tools/Form/sorting';
 
 type ParamsProps = {
@@ -15,7 +15,7 @@ const defaultValues: Service.Detail = {
   id: 0,
   name: '',
   description: '',
-}
+};
 
 const FormPage: React.FC<ParamsProps> = (props) => {
   const [form] = ProForm.useForm();

@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import ProForm, { DrawerForm, ProFormText, ProFormRadio } from '@ant-design/pro-form';
 import { message } from 'antd';
 import { initializesObjectData } from '@/utils/utils';
-import { create, update } from '@/services/goods/ParameterOptions';
+import { create, update } from '@/services/server/goods/ParameterOptions';
 import OptionValues from './ParameterOptionValues';
 import FormSotring from '@/components/Tools/Form/sorting';
 
@@ -15,11 +15,11 @@ type ParamsProps = {
 
 const defaultValues: Parameter.Options = {
   id: 0,
-    type: 0,
-    option: '',
-    values: [],
-    sorting: 0,
-}
+  type: 0,
+  option: '',
+  values: [],
+  sorting: 0,
+};
 
 const FormPage: React.FC<ParamsProps> = (props) => {
   const [form] = ProForm.useForm();

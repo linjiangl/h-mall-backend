@@ -2,7 +2,7 @@ import React, { useRef } from 'react';
 import { PageContainer } from '@ant-design/pro-layout';
 import ProTable from '@ant-design/pro-table';
 import type { ProColumns, ActionType } from '@ant-design/pro-table';
-import { remind } from '@/services/message';
+import { remind } from '@/services/server/message';
 
 const ListTable: React.FC = () => {
   const ref = useRef<ActionType>();

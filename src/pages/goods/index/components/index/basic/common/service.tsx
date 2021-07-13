@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { Form, Checkbox, Button, Space } from 'antd';
 import type { CheckboxOptionType } from 'antd/lib/checkbox/Group';
-import { all } from '@/services/goods/service';
+import { all } from '@/services/server/goods/service';
 import FormPage from '@/pages/goods/service/components/FormPage';
 
 type ParamsProps = {};

@@ -3,30 +3,24 @@ import { PageContainer } from '@ant-design/pro-layout';
 import ProTable from '@ant-design/pro-table';
 import type { ProColumns, ActionType } from '@ant-design/pro-table';
 import { Button, message, Space } from 'antd';
-import { Link } from 'umi';
-import { list, remove } from '@/services/server/goods/parameter';
+import { list, remove } from '@/services/server/goods/brand';
 import { formatDate } from '@/utils/utils';
 import { PlusOutlined } from '@ant-design/icons';
-import FromPage from './components/ParameterForm';
+import FormPage from './components/FormPage';
 import ConfirmDelete from '@/components/Tools/Modal/confirm/delete';
-import Tips from '@/components/Tools/Table/Tips';
 
 const ListTable: React.FC = () => {
   const ref = useRef<ActionType>();
   const [formVisible, setFormVisible] = useState<boolean>(false);
-  const [detail, setDetail] = useState<Parameter.Detail>({});
+  const [detail, setDetail] = useState<Brand.Detail>({});
   const [loding, setLoding] = useState<boolean>(true);
-  const [tipsMessages] = useState<string[]>([
-    '属性模板用在商品添加编辑中',
-    '商品属性，例如蔬菜、水果、数码等',
-  ]);
 
   const beforeCreated = () => {
     setDetail({});
     setFormVisible(true);
   };
 
-  const beforeUpdated = (item: Parameter.Detail) => {
+  const beforeUpdated = (item: Brand.Detail) => {
     setDetail(item);
     setFormVisible(true);
   };
@@ -44,7 +38,7 @@ const ListTable: React.FC = () => {
     setLoding(false);
   }, []);
 
-  const columns: ProColumns<Parameter.Detail>[] = [
+  const columns: ProColumns<Brand.Detail>[] = [
     {
       title: '主键',
       dataIndex: 'id',
@@ -54,14 +48,23 @@ const ListTable: React.FC = () => {
     {
       title: '名称',
       dataIndex: 'name',
+      copyable: true,
       align: 'center',
+    },
+    {
+      title: '状态',
+      dataIndex: 'status',
+      align: 'center',
+      valueEnum: {
+        0: { text: '禁用', status: 'Error' },
+        1: { text: '启用', status: 'Success' },
+      },
     },
     {
       title: '创建时间',
       dataIndex: 'created_time[]',
       align: 'center',
       valueType: 'dateRange',
-      search: false,
       render: (_, row) => <>{formatDate(row.created_time || 0)}</>,
     },
     {
@@ -72,10 +75,6 @@ const ListTable: React.FC = () => {
       width: 240,
       render: (_, record) => (
         <Space>
-          <Link to={`/goods/parameter/options?parameter_id=${record.id}`}>
-            <Button type="primary">设置</Button>
-          </Link>
-
           <Button
             type="primary"
             onClick={() => {
@@ -98,9 +97,8 @@ const ListTable: React.FC = () => {
     <PageContainer title={false}>
       {!loding && (
         <>
-          <Tips list={tipsMessages} />
-          <ProTable<Parameter.Detail>
-            headerTitle="模版列表"
+          <ProTable<Brand.Detail>
+            headerTitle="品牌列表"
             actionRef={ref}
             rowKey="id"
             bordered
@@ -113,10 +111,12 @@ const ListTable: React.FC = () => {
             ]}
           />
           {formVisible && (
-            <FromPage
+            <FormPage
               onCancel={(visible, reload) => {
                 setFormVisible(visible);
-                reload && ref.current?.reload();
+                if (reload) {
+                  ref.current?.reload();
+                }
               }}
               formVisible={formVisible}
               detail={detail}

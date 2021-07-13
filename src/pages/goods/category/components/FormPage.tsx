@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { Form, Select, message } from 'antd';
 import ProForm, { DrawerForm, ProFormText, ProFormRadio } from '@ant-design/pro-form';
 import { initializesObjectData } from '@/utils/utils';
-import { create, update, parent } from '@/services/goods/category';
+import { create, update, parent } from '@/services/server/goods/category';
 import ImageSingle from '@/components/Tools/Uploader/Image/Single';
 import FormSorting from '@/components/Tools/Form/sorting';
 

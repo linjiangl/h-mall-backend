@@ -3,7 +3,7 @@ import { PageContainer } from '@ant-design/pro-layout';
 import ProTable from '@ant-design/pro-table';
 import type { ProColumns, ActionType } from '@ant-design/pro-table';
 import { Button } from 'antd';
-import { announce } from '@/services/message';
+import { announce } from '@/services/server/message';
 import { PlusOutlined } from '@ant-design/icons';
 import SendMessage from './components/SendMessage';
 import UpdateContent from './components/UpdateContent';

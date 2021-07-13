@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { Cascader, Space, Button } from 'antd';
-import { children } from '@/services/goods/category';
+import { children } from '@/services/server/goods/category';
 import FormPage from '@/pages/goods/category/components/FormPage';
 
 type ParamsProps = {

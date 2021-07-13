@@ -3,7 +3,7 @@ import { PageContainer } from '@ant-design/pro-layout';
 import ProTable from '@ant-design/pro-table';
 import type { ProColumns, ActionType } from '@ant-design/pro-table';
 import { message } from 'antd';
-import { list, remove } from '@/services/goods/category';
+import { list, remove } from '@/services/server/goods/category';
 import { formatDate } from '@/utils/utils';
 import ConfirmDelete from '@/components/Tools/Modal/confirm/delete';
 

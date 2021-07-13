@@ -3,7 +3,7 @@ import { PageContainer } from '@ant-design/pro-layout';
 import ProTable from '@ant-design/pro-table';
 import type { ProColumns, ActionType } from '@ant-design/pro-table';
 import { Button, message } from 'antd';
-import { list, remove } from '@/services/goods/category';
+import { list, remove } from '@/services/server/goods/category';
 
 const ListTable: React.FC = () => {
   const ref = useRef<ActionType>();

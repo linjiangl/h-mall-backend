@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { message } from 'antd';
 import ProForm, { DrawerForm, ProFormText } from '@ant-design/pro-form';
 import { initializesObjectData } from '@/utils/utils';
-import { create, update } from '@/services/goods/parameter';
+import { create, update } from '@/services/server/goods/parameter';
 
 type ParamsProps = {
   formVisible: boolean;

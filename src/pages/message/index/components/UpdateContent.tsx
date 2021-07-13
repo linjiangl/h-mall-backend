@@ -1,7 +1,7 @@
 import React from 'react';
 import { message } from 'antd';
 import ProForm, { ModalForm, ProFormText, ProFormTextArea } from '@ant-design/pro-form';
-import { updateText } from '@/services/message';
+import { updateText } from '@/services/server/message';
 
 type ParamsProps = {
   formVisible: boolean;
