@@ -7,9 +7,10 @@ import RightContent from '@/components/RightContent';
 import Footer from '@/components/Footer';
 import { queryCurrentUser } from '@/services/server/user';
 import { BookOutlined, LinkOutlined } from '@ant-design/icons';
+import { getEnvConfig } from '@/utils/env';
 
 const isDev = process.env.NODE_ENV === 'development';
-const loginPath = '/user/login';
+const loginPath = getEnvConfig().loginUrl;
 
 /** 获取用户信息比较慢的时候会展示一个 loading */
 export const initialStateConfig = {

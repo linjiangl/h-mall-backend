@@ -1,50 +1,25 @@
-﻿export default [
-  {
-    path: '/user',
-    layout: false,
-    routes: [
-      {
-        path: '/user',
-        routes: [
-          {
-            name: 'login',
-            path: '/user/login',
-            component: './user/Login',
-          },
-        ],
-      },
-    ],
-  },
-  {
-    path: '/welcome',
-    name: 'welcome',
-    icon: 'smile',
-    component: './Welcome',
-  },
-  {
-    path: '/admin',
-    name: 'admin',
-    icon: 'crown',
-    access: 'canAdmin',
-    component: './Admin',
-    routes: [
-      {
-        path: '/admin/sub-page',
-        name: 'sub-page',
-        icon: 'smile',
-        component: './Welcome',
-      },
-    ],
-  },
-  {
-    name: 'list.table-list',
-    icon: 'table',
-    path: '/list',
-    component: './TableList',
-  },
+﻿// router
+import LoginRouter from './routes/login';
+import DashboardRouter from './routes/dashboard';
+// import GoodsRouter from './routes/goods';
+// import OrderRouter from './routes/order';
+// import UserRouter from './routes/user';
+// import MessageRouter from './routes/message';
+// import AdminRouter from './routes/admin';
+// import SettingRouter from './routes/setting';
+
+export default [
+  ...LoginRouter,
+  ...DashboardRouter,
+  // ...GoodsRouter,
+  // ...OrderRouter,
+  // ...UserRouter,
+  // ...MessageRouter,
+  // ...AdminRouter,
+  // ...SettingRouter,
   {
     path: '/',
-    redirect: '/welcome',
+    redirect: '/general',
   },
   {
     component: './404',
