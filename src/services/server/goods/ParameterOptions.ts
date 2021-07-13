@@ -16,11 +16,11 @@ export async function info(id: number) {
 }
 
 export async function create(data: Parameter.Options) {
-  return created('/parameterOptions/create', requestPropertyToArray('values', data));
+  return created('/parameterOptions/create', requestPropertyToArray('values', data as Record<string, React.Key[]>));
 }
 
 export async function update(data: Parameter.Options) {
-  return updated('/parameterOptions/update', requestPropertyToArray('values', data));
+  return updated('/parameterOptions/update', requestPropertyToArray('values', data as Record<string, React.Key[]>));
 }
 
 export async function remove(id: number) {

@@ -1,6 +1,7 @@
 import { request } from 'umi';
 import { dateToUnix } from '@/utils/utils';
 import { getApiPrefix } from '@/utils/config';
+import { isObject } from 'lodash';
 
 /**
  * 参数处理
@@ -13,7 +14,7 @@ export const requestQueryParams = (
 ): API.RequestParams => {
   let params: API.RequestParams = {};
 
-  for (const key in queryParams.params) {
+  Object.keys(queryParams.params).forEach((key) => {
     if (key === 'current') {
       params.page = queryParams.params[key];
     } else if (key === 'pageSize') {
@@ -35,18 +36,19 @@ export const requestQueryParams = (
     } else {
       params[key] = queryParams.params[key];
     }
-  }
+  })
 
   if (JSON.stringify(queryParams.sort) !== '{}') {
     params = Object.assign(params, { sorter: queryParams.sort });
   }
 
-  if (JSON.stringify(queryParams.filter) !== '{}') {
-    for (const key in queryParams.filter) {
-      if (Object.prototype.hasOwnProperty.call(queryParams.filter, key) && queryParams.filter[key]) {
-        params[key] = queryParams.filter[key]?.join(',');
+  if (JSON.stringify(queryParams.filter) !== '{}' && isObject(queryParams.filter)) {
+    const filter = queryParams.filter as Record<string, unknown>;
+    Object.keys(filter).forEach((key) => {
+      if (filter.hasOwnProperty(key)) {
+        params[key] = (filter[key] as string[]).join(',');
       }
-    }
+    })
   }
   return params;
 };
@@ -56,7 +58,8 @@ export const requestQueryParams = (
  * @param key 属性值
  * @param request
  */
-export const requestPropertyToArray = <T>(key: string, request: T): T => {
+ // eslint-disable-next-line @typescript-eslint/no-shadow
+ export const requestPropertyToArray = (key: string, request: Record<string, React.Key[]>): Record<string, unknown> => {
   const name: string = `${key}[]`;
   const data: React.Key[] = request[key];
   delete request[key];
@@ -64,7 +67,7 @@ export const requestPropertyToArray = <T>(key: string, request: T): T => {
   return request;
 };
 
-export async function http(url: string, data: object = {}, headers: Record<string, string> = {}) {
+export async function http(url: string, data: Record<string, unknown> = {}, headers: Record<string, string> = {}) {
   return request(getApiPrefix() + url, {
     method: 'POST',
     data,
@@ -81,18 +84,18 @@ export async function queryList(
   return http(url, params);
 }
 
-export async function queryInfo(url: string, id: number, params: object = {}) {
+export async function queryInfo(url: string, id: number, params: Record<string, unknown> = {}) {
   return http(url, {
     id,
     ...params,
   });
 }
 
-export async function created(url: string, data: object) {
+export async function created(url: string, data: Record<string, unknown>) {
   return http(url, data);
 }
 
-export async function updated(url: string, data: object) {
+export async function updated(url: string, data: Record<string, unknown>) {
   return http(url, data);
 }
 

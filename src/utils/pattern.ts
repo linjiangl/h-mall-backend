@@ -1,4 +1,4 @@
-const config: Object = {
+const config: Record<string, RegExp> = {
   mobile: new RegExp('^1\\d{10}$'),
   tel: new RegExp('^\\d{3,4}[ -]\\d{7,8}$'),
   qq: new RegExp('^[1-9]\\d{4, 10}$'),
