@@ -69,9 +69,10 @@ const FormPage: React.FC<ParamsProps> = (props) => {
         onCancel(visible, false);
       }}
       onFinish={async (values) => {
-        // eslint-disable-next-line no-param-reassign
-        values.id = detail.id;
-        handleCreateOrUpdate(values);
+        handleCreateOrUpdate({
+          ...values,
+          id: detail.id,
+        });
       }}
       initialValues={defaultDetail}
       layout="horizontal"

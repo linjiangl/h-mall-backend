@@ -45,9 +45,7 @@ export const requestQueryParams = (
   if (JSON.stringify(queryParams.filter) !== '{}' && isObject(queryParams.filter)) {
     const filter = queryParams.filter as Record<string, unknown>;
     Object.keys(filter).forEach((key) => {
-      if (filter.hasOwnProperty(key)) {
-        params[key] = (filter[key] as string[]).join(',');
-      }
+      params[key] = (filter[key] as string[]).join(',');
     })
   }
   return params;
@@ -56,15 +54,14 @@ export const requestQueryParams = (
 /**
  * 请求参数对象中,属性是数组的数据处理
  * @param key 属性值
- * @param request
+ * @param requestParams
  */
- // eslint-disable-next-line @typescript-eslint/no-shadow
- export const requestPropertyToArray = (key: string, request: Record<string, React.Key[]>): Common.Object => {
+ export const requestPropertyToArray = (key: string, requestParams: Record<string, React.Key[]>): Common.Object => {
+  const params: Record<string, React.Key[]> = requestParams;
   const name: string = `${key}[]`;
-  const data: React.Key[] = request[key];
-  delete request[key];
-  request[name] = data;
-  return request;
+  params[name] = params[key];
+  delete params[key];
+  return params;
 };
 
 export async function http(url: string, data: Common.Object = {}, headers: Record<string, string> = {}) {

@@ -80,8 +80,7 @@ export const removeAuthorizeToken = (): void => {
 };
 
 // 初始化对象数据
-// eslint-disable-next-line @typescript-eslint/ban-types
-export const initializesObjectData = <T extends object, K extends T>(
+export const initializesObjectData = <T extends Common.Object, K extends T>(
   objectData: T,
   defaultData: K,
 ): T => {
@@ -96,8 +95,7 @@ export const generateEditTableId = (): number => {
   return Number((Math.random() * 10000000000000).toFixed(0)) * -1;
 };
 
-// eslint-disable-next-line @typescript-eslint/ban-types
-export const onCallback = (f: undefined | Function, args: any[]): void => {
+export const onCallback = (f: any, args: any[]): void => {
   if (typeof f === 'function') {
     f(...args);
   }
