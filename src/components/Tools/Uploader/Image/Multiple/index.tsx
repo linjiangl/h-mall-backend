@@ -81,7 +81,7 @@ const ImageMultiple: React.FC<ImageSingleProps> = (props) => {
       setFileList(tmpFileList);
       handleResult(tmpFileList);
     }
-    // eslint-disable-next-line react-hooks/exhaustive-deps
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   const uploadButton = <div>{loading ? <LoadingOutlined /> : <PlusOutlined />}</div>;
