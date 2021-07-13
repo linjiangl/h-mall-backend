@@ -59,7 +59,7 @@ export const requestQueryParams = (
  * @param request
  */
  // eslint-disable-next-line @typescript-eslint/no-shadow
- export const requestPropertyToArray = (key: string, request: Record<string, React.Key[]>): Record<string, unknown> => {
+ export const requestPropertyToArray = (key: string, request: Record<string, React.Key[]>): Common.Object => {
   const name: string = `${key}[]`;
   const data: React.Key[] = request[key];
   delete request[key];
@@ -67,7 +67,7 @@ export const requestQueryParams = (
   return request;
 };
 
-export async function http(url: string, data: Record<string, unknown> = {}, headers: Record<string, string> = {}) {
+export async function http(url: string, data: Common.Object = {}, headers: Record<string, string> = {}) {
   return request(getApiPrefix() + url, {
     method: 'POST',
     data,
@@ -84,18 +84,18 @@ export async function queryList(
   return http(url, params);
 }
 
-export async function queryInfo(url: string, id: number, params: Record<string, unknown> = {}) {
+export async function queryInfo(url: string, id: number, params: Common.Object = {}) {
   return http(url, {
     id,
     ...params,
   });
 }
 
-export async function created(url: string, data: Record<string, unknown>) {
+export async function created(url: string, data: Common.Object) {
   return http(url, data);
 }
 
-export async function updated(url: string, data: Record<string, unknown>) {
+export async function updated(url: string, data: Common.Object) {
   return http(url, data);
 }
 

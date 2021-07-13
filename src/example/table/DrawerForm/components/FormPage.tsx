@@ -1,4 +1,3 @@
-/* eslint-disable @typescript-eslint/ban-types */
 import React, { useEffect, useState } from 'react';
 import { Form, Select, message } from 'antd';
 import ProForm, { DrawerForm, ProFormText, ProFormRadio } from '@ant-design/pro-form';
@@ -28,7 +27,7 @@ const FormPage: React.FC<ParamsProps> = (props) => {
   const [parentList, setParentList] = useState<Category.Detail[]>([]);
   const [defaultDetail] = useState<Category.Detail>(initializesObjectData(detail, defalutValues));
 
-  const setFormData = (obj: object) => {
+  const setFormData = (obj: Common.Object) => {
     form.setFieldsValue({
       ...form.getFieldsValue(),
       ...obj,

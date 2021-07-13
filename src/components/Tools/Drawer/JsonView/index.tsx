@@ -1,11 +1,10 @@
-/* eslint-disable @typescript-eslint/ban-types */
 import React from 'react';
 import { Drawer, Card } from 'antd';
 import ProField from '@ant-design/pro-field';
 
 type ParamsProps = {
   visible: boolean;
-  json: object;
+  json: Common.Object;
   title?: string;
   remark?: string;
   onCancel: (visible: boolean) => void;

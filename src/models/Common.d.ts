@@ -1,4 +1,6 @@
 declare namespace Common {
+  export type Object = Record<string, unknown>;
+
   export type Error = {
     code?: number;
     error?: string;
@@ -10,12 +12,9 @@ declare namespace Common {
     full_path: string;
   };
 
-  export type IValueEnum = {
-    [key: string]:
-      | React.ReactNode
-      | {
-          text: React.ReactNode;
-          status: 'Success' | 'Error' | 'Processing' | 'Warning' | 'Default';
-        };
-  };
+  export type IValueEnum = Record<string, | React.ReactNode
+| {
+    text: React.ReactNode;
+    status: 'Success' | 'Error' | 'Processing' | 'Warning' | 'Default';
+  }>;
 }

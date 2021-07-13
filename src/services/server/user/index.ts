@@ -24,7 +24,7 @@ export async function queryCurrentUser(token: string = '') {
 }
 
 export async function queryNotices(): Promise<any> {
-  const data: object[] = [
+  const data: Common.Object[] = [
     {
       id: '000000001',
       avatar: 'https://gw.alipayobjects.com/zos/rmsportal/ThXAXghbEsBCCSDihZxY.png',

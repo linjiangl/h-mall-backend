@@ -1,4 +1,3 @@
-/* eslint-disable @typescript-eslint/ban-types */
 import { Button } from 'antd';
 import moment from 'moment';
 import React from 'react';
@@ -6,7 +5,7 @@ import { exportExcel } from '@/services/server/common';
 
 type ParamsProps = {
   requestUrl: string;
-  requestParams: object;
+  requestParams: Record<string, unknown>;
   max?: number;
   filename?: string;
   method?: string;

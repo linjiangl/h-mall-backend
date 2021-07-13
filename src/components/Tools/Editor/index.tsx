@@ -1,5 +1,3 @@
-/* eslint-disable @typescript-eslint/ban-types */
-/* eslint-disable @typescript-eslint/no-shadow */
 import React, { useState, useRef } from 'react';
 import RcUEditor from 'react-ueditor-wrap';
 import { onCallback } from '@/utils/utils';
@@ -10,7 +8,7 @@ type EditorProps = {
   zIndex?: number;
   height?: number | string;
   maxWords?: number;
-  config?: object;
+  config?: Common.Object;
   onChange?: (value: string) => void;
 };
 
@@ -40,7 +38,7 @@ const Editor: React.FC<EditorProps> = (props) => {
       ueditorUrl="https://market.w7.cc/UEditor/ueditor.all.min.js"
       ueditorConfigUrl="https://market.w7.cc/UEditor/ueditor.config.js"
       editorConfig={editorConfig}
-      onChange={(value: string) => onCallback(onChange, [value])}
+      onChange={(text: string) => onCallback(onChange, [text])}
     />
   );
 };
