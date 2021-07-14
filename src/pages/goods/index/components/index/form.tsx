@@ -15,7 +15,9 @@ enum TabKeys {
   parameter = 'parameter',
 }
 
-type ParamsProps = {};
+type ParamsProps = {
+  // 
+};
 
 const defaultValues: Form.Goods = {
   id: 0,
@@ -46,8 +48,7 @@ const defaultValues: Form.Goods = {
   },
 };
 
-const FormPage: React.FC<ParamsProps> = (props) => {
-  const {} = props;
+const FormPage: React.FC<ParamsProps> = () => {
   const [form] = ProForm.useForm();
   const [detail] = useState<Goods.Detail>(defaultValues);
 
@@ -58,14 +59,14 @@ const FormPage: React.FC<ParamsProps> = (props) => {
       <ProForm
         form={form}
         submitter={{
-          render: (props) => (
+          render: (submitProps) => (
             <FooterToolbar>
               <Space>
                 <Button type="primary">上一步</Button>
                 <Button
                   type="primary"
                   onClick={() => {
-                    props.form?.submit?.();
+                    submitProps.form?.submit?.();
                   }}
                 >
                   确认
@@ -76,8 +77,10 @@ const FormPage: React.FC<ParamsProps> = (props) => {
           ),
         }}
         onFinish={async (values) => {
-          values.type = defaultValues.type;
-          console.log(values);
+          console.log({
+            ...values,
+            type: defaultValues.type
+          })
           message.success('提交成功');
         }}
         initialValues={detail}

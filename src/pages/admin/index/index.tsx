@@ -12,9 +12,7 @@ const ListTable: React.FC = () => {
   const ref = useRef<ActionType>();
   const [formVisible, setFormVisible] = useState<boolean>(false);
   const [detail, setDetail] = useState<Admin.Detail>({});
-  const [columnsStateMap, setColumnsStateMap] = useState<{
-    [key: string]: ColumnsState;
-  }>({
+  const [columnsStateMap, setColumnsStateMap] = useState<Record<string, ColumnsState>>({
     username: {
       show: false,
     },
@@ -118,7 +116,9 @@ const ListTable: React.FC = () => {
         <FormPage
           onCancel={(visible, relaod) => {
             setFormVisible(visible);
-            relaod && ref.current?.reload();
+            if (relaod) {
+              ref.current?.reload();
+            }
           }}
           formVisible={formVisible}
           detail={detail}

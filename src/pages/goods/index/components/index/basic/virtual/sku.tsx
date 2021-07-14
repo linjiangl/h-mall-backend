@@ -1,11 +1,11 @@
 import React from 'react';
 import GeneralSku from '../general/sku';
 
-type ParamsProps = {};
+type ParamsProps = {
+  //
+};
 
-const FormSku: React.FC<ParamsProps> = (props) => {
-  const {} = props;
-
+const FormSku: React.FC<ParamsProps> = () => {
   return <GeneralSku />;
 };
 

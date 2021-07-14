@@ -23,15 +23,15 @@ const OptionValuesTable: React.FC<ParamsProps> = (props) => {
   });
 
   useEffect(() => {
-    let tmpDataSource: DataSourceType[] = [];
-    values.map((item, index) => {
+    const tmpDataSource: DataSourceType[] = [];
+    values.forEach((item, index) => {
       tmpDataSource.push({
         id: index,
         title: item,
       });
     });
     setDataSource(tmpDataSource);
-  }, []);
+  }, [values]);
 
   const columns: ProColumns<DataSourceType>[] = [
     {

@@ -44,7 +44,7 @@ const FormPage: React.FC<ParamsProps> = (props) => {
     }
   };
 
-  const setFormData = (obj: object) => {
+  const setFormData = (obj: Common.Object) => {
     form.setFieldsValue({
       ...form.getFieldsValue(),
       ...obj,
@@ -54,15 +54,17 @@ const FormPage: React.FC<ParamsProps> = (props) => {
   return (
     <DrawerForm
       visible={formVisible}
-      title={(detail.id ? '编辑' : '创建') + '属性'}
+      title={`${detail.id ? '编辑' : '创建'}属性`}
       form={form}
       onVisibleChange={(visible) => {
         onCancel(visible, false);
       }}
       onFinish={async (values) => {
-        values.id = detail.id;
-        values.parameter_id = parameterId;
-        handleCreateOrUpdate(values);
+        handleCreateOrUpdate({
+          ...values,
+          id: detail.id,
+          parameter_id: parameterId
+        });
       }}
       initialValues={defaultDetail}
       layout="horizontal"

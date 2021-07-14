@@ -31,8 +31,10 @@ const UpdateContent: React.FC<ParamsProps> = (props) => {
         onCancel(visible, false);
       }}
       onFinish={async (values) => {
-        values.id = detail.id;
-        handleUpdateContent(values);
+        handleUpdateContent({
+          ...values,
+          id: detail.id
+        });
       }}
       initialValues={detail}
       layout="horizontal"

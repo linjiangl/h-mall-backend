@@ -4,18 +4,19 @@ import type { CheckboxOptionType } from 'antd/lib/checkbox/Group';
 import { all } from '@/services/server/goods/service';
 import FormPage from '@/pages/goods/service/components/FormPage';
 
-type ParamsProps = {};
+type ParamsProps = {
+  // 
+};
 
-const FormService: React.FC<ParamsProps> = (props) => {
-  const {} = props;
+const FormService: React.FC<ParamsProps> = () => {
   const [list, setList] = useState<CheckboxOptionType[]>([]);
   const [formVisible, setFormVisible] = useState<boolean>(false);
 
   useEffect(() => {
     all()
       .then((res: Service.Detail[]) => {
-        let tmp: CheckboxOptionType[] = [];
-        res.map((item) => {
+        const tmp: CheckboxOptionType[] = [];
+        res.forEach((item) => {
           tmp.push({
             label: item.name,
             value: item.id as number,

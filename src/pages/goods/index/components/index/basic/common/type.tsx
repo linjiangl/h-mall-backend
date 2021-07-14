@@ -38,16 +38,16 @@ const FormType: React.FC<ParamsProps> = (props) => {
   const [virtualStyle, setVirtualStyle] = useState<React.CSSProperties>(TypeStyle);
   const [virtualHeaderStyle, setVirtualHeaderStyle] = useState<React.CSSProperties>(TypeHeadStyle);
 
-  const handleType = (type: Goods.GoodsType) => {
-    setGoodsType(type);
+  const handleType = (pType: Goods.GoodsType) => {
+    setGoodsType(pType);
 
     if (typeof onChange === 'function') {
-      onChange(type);
+      onChange(pType);
     }
   };
 
   useEffect(() => {
-    if (goodsType == 'general') {
+    if (goodsType === 'general') {
       setGeneralStyle(TypeActiveStyle);
       setGeneralHeaderStyle(TypeHeadActiveStyle);
       setVirtualStyle(TypeStyle);

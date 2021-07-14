@@ -4,10 +4,11 @@ import { GoodsTimerStatus, GoodsStatus } from '@/services/server/goods';
 import FormTimer from './timer';
 import GoodsContext from '@/contexts/goods';
 
-type ParamsProps = {};
+type ParamsProps = {
+  //
+};
 
-const FormStatus: React.FC<ParamsProps> = (props) => {
-  const {} = props;
+const FormStatus: React.FC<ParamsProps> = () => {
   const goodsDetail: Goods.Detail = useContext(GoodsContext);
   const [statusVisible, setStatusVisible] = useState<boolean>(!goodsDetail.status);
   const [onTimerVisible, setOnTimerVisible] = useState<boolean>(!!goodsDetail.timer?.on);
@@ -45,7 +46,7 @@ const FormStatus: React.FC<ParamsProps> = (props) => {
         >
           <Radio.Group
             onChange={(e) => {
-              setOnTimerVisible(e.target.value ? true : false);
+              setOnTimerVisible(!!e.target.value);
             }}
             options={[
               {
@@ -70,7 +71,7 @@ const FormStatus: React.FC<ParamsProps> = (props) => {
       >
         <Radio.Group
           onChange={(e) => {
-            setOffTimerVisible(e.target.value ? true : false);
+            setOffTimerVisible(!!e.target.value);
           }}
           options={[
             {

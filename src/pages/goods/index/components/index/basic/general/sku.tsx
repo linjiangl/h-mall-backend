@@ -4,10 +4,11 @@ import ProForm from '@ant-design/pro-form';
 import SkuDefault from '../common/sku/Default';
 import SkuMultiple from '../common/sku/Multiple';
 
-type ParamsProps = {};
+type ParamsProps = {
+  //
+};
 
-const FormConfig: React.FC<ParamsProps> = (props) => {
-  const {} = props;
+const FormConfig: React.FC<ParamsProps> = () => {
   const [visible, setVisible] = useState<boolean>(false);
 
   return (

@@ -15,7 +15,7 @@ const SendMessage: React.FC<ParamsProps> = (props) => {
   const { formVisible, onCancel } = props;
   const [checked, setChecked] = useState<boolean>(false);
 
-  const setFormData = (obj: object) => {
+  const setFormData = (obj: Common.Object) => {
     form.setFieldsValue({
       ...form.getFieldsValue(),
       ...obj,
@@ -86,9 +86,9 @@ const SendMessage: React.FC<ParamsProps> = (props) => {
       <ProForm.Item name="is_force_push" label="强制推送">
         <Switch
           checked={checked}
-          onChange={(checked) => {
-            setChecked(checked);
-            setFormData({ is_force_push: checked });
+          onChange={(pChecked) => {
+            setChecked(pChecked);
+            setFormData({ is_force_push: pChecked });
           }}
         />
       </ProForm.Item>

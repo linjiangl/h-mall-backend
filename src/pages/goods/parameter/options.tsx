@@ -44,12 +44,12 @@ const ListTable: React.FC = () => {
 
   useEffect(() => {
     const params = getPageQuery();
-    const parameterId: number = parseInt(params.parameter_id as string);
-    if (!parameterId) {
+    const queryId: number = parseInt(params.parameter_id as string, 10);
+    if (!queryId) {
       parmasValidationFailed();
     }
-    if (parameterId) {
-      parameterDetail(parameterId)
+    if (queryId > 0) {
+      parameterDetail(queryId)
         .then((res: Parameter.Detail) => {
           if (res.name) {
             setTitle(`${res.name}模版`);
@@ -86,9 +86,9 @@ const ListTable: React.FC = () => {
       dataIndex: 'values',
       align: 'center',
       render: (_, record) =>
-        record.values?.map((item, key) => {
+        record.values?.map((item) => {
           return (
-            <Tag color="#108ee9" key={key}>
+            <Tag color="#108ee9" key={record.id}>
               {item}
             </Tag>
           );
@@ -155,7 +155,9 @@ const ListTable: React.FC = () => {
               detail={detail}
               onCancel={(visible, reload) => {
                 setFormVisible(visible);
-                reload && ref.current?.reload();
+                if (reload) {
+                  ref.current?.reload();
+                }
               }}
             />
           )}

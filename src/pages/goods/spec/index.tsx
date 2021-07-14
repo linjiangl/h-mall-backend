@@ -55,9 +55,9 @@ const ListTable: React.FC = () => {
       dataIndex: 'values',
       align: 'center',
       render: (_, record) =>
-        record.values?.map((item, key) => {
+        record.values?.map((item) => {
           return (
-            <Tag color="#108ee9" key={key}>
+            <Tag color="#108ee9" key={record.id}>
               {item.value}
             </Tag>
           );
@@ -126,7 +126,9 @@ const ListTable: React.FC = () => {
             <FormPage
               onCancel={(visible, reload) => {
                 setFormVisible(visible);
-                reload && ref.current?.reload();
+                if (reload) {
+                  ref.current?.reload();
+                }
               }}
               formVisible={formVisible}
               detail={detail}

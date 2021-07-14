@@ -4,10 +4,11 @@ import FormNumber from '@/components/Tools/Form/number';
 import FormService from '../common/service';
 import FormStatus from '../common/status';
 
-type ParamsProps = {};
+type ParamsProps = {
+  // 
+};
 
-const FormConfig: React.FC<ParamsProps> = (props) => {
-  const {} = props;
+const FormConfig: React.FC<ParamsProps> = () => {
 
   return (
     <>

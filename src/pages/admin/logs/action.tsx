@@ -68,7 +68,7 @@ const ListTable: React.FC = () => {
       align: 'center',
       render: (_, row) => (
         <Alert
-          message={row.remark ? row.remark.method + '  ' + row.remark.url : ''}
+          message={row.remark ? `${row.remark.method}  ${row.remark.url}` : ''}
           type="info"
           style={{ textAlign: 'left' }}
           action={
@@ -76,7 +76,9 @@ const ListTable: React.FC = () => {
               size="small"
               type="primary"
               onClick={() => {
-                row.remark && setRemark(row.remark);
+                if (row.remark) {
+                  setRemark(row.remark);
+                }
                 setJsonVisible(true);
               }}
             >
@@ -139,7 +141,7 @@ const ListTable: React.FC = () => {
       <JsonView
         json={remark.data}
         title="操作日志"
-        remark={remark.method + '  ' + remark.url}
+        remark={`${remark.method}  ${remark.url}`}
         visible={jsonVisible}
         onCancel={setJsonVisible}
       />

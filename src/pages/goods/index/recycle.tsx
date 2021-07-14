@@ -20,7 +20,7 @@ const TableList: React.FC = () => {
     batchActinType.sale_price,
   );
 
-  const columns: object[] = [
+  const columns: Common.Object[] = [
     {
       title: 'Name',
       dataIndex: 'name',
@@ -93,7 +93,7 @@ const TableList: React.FC = () => {
   ];
 
   const data = [];
-  for (let i = 0; i < 10; i++) {
+  for (let i = 0; i < 10; i += 1) {
     data.push({
       key: i,
       name: 'John Brown',

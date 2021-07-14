@@ -1,6 +1,5 @@
 import React, { useState } from 'react';
-import { Select, Tag, Row, Col, Button, Space } from 'antd';
-import { reduce } from 'lodash';
+import { Select, Tag, Row, Col, Space } from 'antd';
 
 const { Option, OptGroup } = Select;
 const { CheckableTag } = Tag;
@@ -9,11 +8,10 @@ const SkuSpec: React.FC = () => {
   const tagsData = ['Movies', 'Books', 'Music', 'Sports'];
   const [selectedTags, setSelectTags] = useState(['Books']);
 
-  const handleChange = (tag, checked) => {
+  const handleChange = (tag: string, checked: boolean) => {
     const nextSelectedTags = checked
       ? [...selectedTags, tag]
       : selectedTags.filter((t) => t !== tag);
-    console.log('You are interested in: ', nextSelectedTags);
     setSelectTags(nextSelectedTags);
   };
 

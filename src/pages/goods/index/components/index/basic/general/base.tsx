@@ -3,10 +3,11 @@ import ProForm, { ProFormText, ProFormTextArea } from '@ant-design/pro-form';
 import ImageNultiple from '@/components/Tools/Uploader/Image/Multiple';
 import FormCategory from '../common/category';
 
-type ParamsProps = {};
+type ParamsProps = {
+  //
+};
 
-const FormBase: React.FC<ParamsProps> = (props) => {
-  const {} = props;
+const FormBase: React.FC<ParamsProps> = () => {
 
   return (
     <>

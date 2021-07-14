@@ -44,13 +44,15 @@ const FormPage: React.FC<ParamsProps> = (props) => {
     <DrawerForm
       form={form}
       visible={formVisible}
-      title={(detail.id ? '编辑' : '创建') + '商品服务'}
+      title={`${detail.id ? '编辑' : '创建'}商品服务`}
       onVisibleChange={(visible) => {
         onCancel(visible, false);
       }}
       onFinish={async (values) => {
-        values.id = detail.id;
-        handleCreateOrUpdate(values);
+        handleCreateOrUpdate({
+          ...values,
+          id: detail.id
+        });
       }}
       initialValues={defaultDetail}
       layout="horizontal"

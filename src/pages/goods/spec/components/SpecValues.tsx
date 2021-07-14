@@ -50,7 +50,7 @@ const OptionValuesTable: React.FC<ParamsProps> = (props) => {
         <a
           key="editable"
           onClick={() => {
-            action.startEditable?.(record.id as number);
+            action?.startEditable?.(record.id as number);
           }}
         >
           编辑

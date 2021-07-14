@@ -13,8 +13,8 @@ const FormContent: React.FC<ParamsProps> = (props) => {
   return (
     <Editor
       value={value}
-      onChange={(value) => {
-        onCallback(onChange, [value]);
+      onChange={(v) => {
+        onCallback(onChange, [v]);
       }}
     />
   );

@@ -17,7 +17,7 @@ const SkuOperation: React.FC = () => {
   const [currentType, setCurrentType] = useState<operationType>(operationType.sale_price);
 
   const data = [];
-  for (let i = 0; i < 10; i++) {
+  for (let i = 0; i < 10; i += 1) {
     data.push({
       key: i,
       name: 'John Brown',

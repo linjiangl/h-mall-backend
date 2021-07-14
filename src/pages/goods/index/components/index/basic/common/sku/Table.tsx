@@ -2,7 +2,7 @@ import React from 'react';
 import { Table, Input } from 'antd';
 
 const SkuTable: React.FC = () => {
-  const columns: object[] = [
+  const columns: Common.Object[] = [
     {
       title: 'Name',
       dataIndex: 'name',
@@ -75,7 +75,7 @@ const SkuTable: React.FC = () => {
   ];
 
   const data = [];
-  for (let i = 0; i < 3; i++) {
+  for (let i = 0; i < 3; i += 1) {
     data.push({
       key: i,
       name: 'John Brown',

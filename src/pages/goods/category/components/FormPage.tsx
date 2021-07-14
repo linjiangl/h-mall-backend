@@ -27,7 +27,7 @@ const FormPage: React.FC<ParamsProps> = (props) => {
   const [parentList, setParentList] = useState<Category.Detail[]>([]);
   const [defaultDetail] = useState<Category.Detail>(initializesObjectData(detail, defaultValues));
 
-  const setFormData = (obj: object) => {
+  const setFormData = (obj: Common.Object) => {
     form.setFieldsValue({
       ...form.getFieldsValue(),
       ...obj,
@@ -64,13 +64,15 @@ const FormPage: React.FC<ParamsProps> = (props) => {
     <DrawerForm
       form={form}
       visible={formVisible}
-      title={(detail.id ? '编辑' : '创建') + '分类'}
+      title={`${detail.id ? '编辑' : '创建'}分类`}
       onVisibleChange={(visible) => {
         onCancel(visible, false);
       }}
       onFinish={async (values) => {
-        values.id = detail.id;
-        handleCreateOrUpdate(values);
+        handleCreateOrUpdate({
+          ...values,
+          id: detail.id
+        });
       }}
       initialValues={defaultDetail}
       layout="horizontal"

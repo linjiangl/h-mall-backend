@@ -2,11 +2,11 @@ import React from 'react';
 import { ProFormText } from '@ant-design/pro-form';
 import FormNumber from '@/components/Tools/Form/number';
 
-type ParamsProps = {};
+type ParamsProps = {
+  //
+};
 
-const SkuDefault: React.FC<ParamsProps> = (props) => {
-  const {} = props;
-
+const SkuDefault: React.FC<ParamsProps> = () => {
   return (
     <>
       <FormNumber

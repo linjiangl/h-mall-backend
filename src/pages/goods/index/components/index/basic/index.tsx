@@ -27,11 +27,11 @@ const FormBasic: React.FC<ParamsProps> = (props) => {
   const { type, onChange } = props;
   const [goodsType, setGoodsType] = useState<Goods.GoodsType>(type);
 
-  const handleFormComponent = (type: CollapseType): any => {
+  const handleFormComponent = (collapseType: CollapseType): any => {
     let component = <></>;
     switch (goodsType) {
       case 'general':
-        switch (type) {
+        switch (collapseType) {
           case CollapseType.base:
             component = <GeneralBase />;
             break;
@@ -41,10 +41,11 @@ const FormBasic: React.FC<ParamsProps> = (props) => {
           case CollapseType.config:
             component = <GeneralConfig />;
             break;
+          default:
         }
         break;
       case 'virtual':
-        switch (type) {
+        switch (collapseType) {
           case CollapseType.base:
             component = <VirtualBase />;
             break;
@@ -54,8 +55,10 @@ const FormBasic: React.FC<ParamsProps> = (props) => {
           case CollapseType.config:
             component = <VirtualConfig />;
             break;
+          default:
         }
         break;
+      default:
     }
 
     return component;
@@ -76,9 +79,9 @@ const FormBasic: React.FC<ParamsProps> = (props) => {
         <Divider className={styles.goodsBasicDivider} />
         <FormType
           type={goodsType}
-          onChange={(type) => {
-            setGoodsType(type);
-            onChange(type);
+          onChange={(changeType) => {
+            setGoodsType(changeType);
+            onChange(changeType);
           }}
         />
       </Panel>

@@ -52,8 +52,9 @@ const ListTable: React.FC = () => {
             handleRemove([id]);
           },
         });
-
         break;
+
+      default:
     }
   };
 

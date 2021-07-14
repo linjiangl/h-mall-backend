@@ -116,7 +116,9 @@ const ListTable: React.FC = () => {
             <FromPage
               onCancel={(visible, reload) => {
                 setFormVisible(visible);
-                reload && ref.current?.reload();
+                if (reload) {
+                  ref.current?.reload();
+                }
               }}
               formVisible={formVisible}
               detail={detail}

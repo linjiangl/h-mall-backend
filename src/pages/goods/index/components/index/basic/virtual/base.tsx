@@ -1,11 +1,11 @@
 import React from 'react';
 import GeneralBase from '../general/base';
 
-type ParamsProps = {};
+type ParamsProps = {
+  //
+};
 
-const FormBase: React.FC<ParamsProps> = (props) => {
-  const {} = props;
-
+const FormBase: React.FC<ParamsProps> = () => {
   return <GeneralBase />;
 };
 

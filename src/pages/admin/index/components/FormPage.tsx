@@ -36,8 +36,10 @@ const FormPage: React.FC<ParamsProps> = (props) => {
         onCancel(visible, false);
       }}
       onFinish={async (values) => {
-        values.id = detail.id;
-        handleCreateOrUpdate(values);
+        handleCreateOrUpdate({
+          ...values,
+          id: detail.id
+        });
       }}
       initialValues={detail}
       layout="horizontal"
