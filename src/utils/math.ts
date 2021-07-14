@@ -1,17 +1,17 @@
-import * as math from 'mathjs';
+import NP from 'number-precision';
 
 export const bcadd = (x: number, y: number, scale: number = 0): string => {
-  return Number(math.format(x + y, { precision: 14 })).toFixed(scale);
+  return NP.plus(x, y).toFixed(scale);
 };
 
 export const bcsub = (x: number, y: number, scale: number = 0): string => {
-  return Number(math.format(x - y, { precision: 14 })).toFixed(scale);
+  return NP.minus(x, y).toFixed(scale);
 };
 
 export const bcmul = (x: number, y: number, scale: number = 0): string => {
-  return Number(math.format(x * y, { precision: 14 })).toFixed(scale);
+  return NP.times(x, y).toFixed(scale);
 };
 
 export const bcdiv = (x: number, y: number, scale: number = 0): string => {
-  return Number(math.format(x * y, { precision: 14 })).toFixed(scale);
+  return NP.divide(x, y).toFixed(scale);
 };
