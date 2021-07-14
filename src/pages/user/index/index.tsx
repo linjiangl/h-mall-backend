@@ -54,6 +54,7 @@ const ListTable: React.FC = () => {
       dataIndex: 'status',
       filters: true,
       align: 'center',
+      search: false,
       valueEnum: {
         '0': { text: '待审核', status: 'Processing' },
         '1': { text: '已审核', status: 'Success' },
@@ -64,6 +65,7 @@ const ListTable: React.FC = () => {
       title: '账户金额',
       align: 'center',
       width: 160,
+      search: false,
       render: (_, row) => (
         <>￥{row.wallet ? bcadd(row.wallet.balance, row.wallet.freeze_balance, 2) : 0}</>
       ),
@@ -72,6 +74,7 @@ const ListTable: React.FC = () => {
       title: '账户积分',
       align: 'center',
       width: 160,
+      search: false,
       render: (_, row) => (
         <>{row.wallet ? bcadd(row.wallet.integral, row.wallet.freeze_integral) : 0}</>
       ),
@@ -82,6 +85,7 @@ const ListTable: React.FC = () => {
       align: 'center',
       width: 160,
       search: false,
+      sorter: true,
       render: (_, row) => <>{formatDate(row.lasted_login_time || 0)}</>,
     },
     {
