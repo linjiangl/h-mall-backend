@@ -55,6 +55,7 @@ const ListTable: React.FC = () => {
         break;
 
       default:
+        break;
     }
   };
 

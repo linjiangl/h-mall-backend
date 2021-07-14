@@ -42,6 +42,7 @@ const FormBasic: React.FC<ParamsProps> = (props) => {
             component = <GeneralConfig />;
             break;
           default:
+            break;
         }
         break;
       case 'virtual':
@@ -56,9 +57,11 @@ const FormBasic: React.FC<ParamsProps> = (props) => {
             component = <VirtualConfig />;
             break;
           default:
+            break;
         }
         break;
       default:
+        break;
     }
 
     return component;
