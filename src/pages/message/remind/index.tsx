@@ -60,7 +60,7 @@ const ListTable: React.FC = () => {
     },
     {
       title: '创建时间',
-      dataIndex: 'created_time[]',
+      dataIndex: 'created_time',
       hideInForm: true,
       hideInTable: true,
       valueType: 'dateRange',

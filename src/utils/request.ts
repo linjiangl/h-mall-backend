@@ -1,5 +1,5 @@
 import { request } from 'umi';
-import { dateToUnix } from '@/utils/utils';
+import { dateToUnix, getAuthorizeToken } from '@/utils/utils';
 import { getApiPrefix } from '@/utils/config';
 import { isObject } from 'lodash';
 
@@ -10,7 +10,7 @@ import { isObject } from 'lodash';
  */
 export const requestQueryParams = (
   queryParams: API.TableRequestParams,
-  dateRange: string[] | [] = ['created_time[]'],
+  dateRange: string[],
 ): API.RequestParams => {
   let params: API.RequestParams = {};
 
@@ -36,17 +36,18 @@ export const requestQueryParams = (
     } else {
       params[key] = queryParams.params[key];
     }
-  })
+  });
 
   if (JSON.stringify(queryParams.sort) !== '{}') {
     params = Object.assign(params, { sorter: queryParams.sort });
   }
 
   if (JSON.stringify(queryParams.filter) !== '{}' && isObject(queryParams.filter)) {
-    const filter = queryParams.filter as Record<string, unknown>;
-    Object.keys(filter).forEach((key) => {
-      params[key] = (filter[key] as string[]).join(',');
-    })
+    Object.keys(queryParams.filter).forEach((key) => {
+      if (queryParams.filter && queryParams.filter[key] !== null) {
+        params[key] = queryParams.filter[key];
+      }
+    });
   }
   return params;
 };
@@ -56,7 +57,10 @@ export const requestQueryParams = (
  * @param key 属性值
  * @param requestParams
  */
- export const requestPropertyToArray = (key: string, requestParams: Record<string, React.Key[]>): Common.Object => {
+export const requestPropertyToArray = (
+  key: string,
+  requestParams: Record<string, React.Key[]>,
+): Common.Object => {
   const params: Record<string, React.Key[]> = requestParams;
   const name: string = `${key}[]`;
   params[name] = params[key];
@@ -64,18 +68,20 @@ export const requestQueryParams = (
   return params;
 };
 
-export async function http(url: string, data: Common.Object = {}, headers: Record<string, string> = {}) {
+export async function http(url: string, data: Common.Object = {}) {
   return request(getApiPrefix() + url, {
     method: 'POST',
     data,
-    headers,
+    headers: {
+      Authorization: getAuthorizeToken(),
+    },
   });
 }
 
 export async function queryList(
   url: string,
   tableRequestParams: API.TableRequestParams,
-  dateRange: string[] = [],
+  dateRange: string[] = ['created_time'],
 ) {
   const params: API.RequestParams = requestQueryParams(tableRequestParams, dateRange);
   return http(url, params);

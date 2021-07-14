@@ -1,6 +1,6 @@
 // https://umijs.org/config/
 import { defineConfig } from 'umi';
-import type { IConfig }from 'umi'
+import type { IConfig } from 'umi';
 import { join } from 'path';
 
 import defaultSettings from './defaultSettings';
@@ -96,7 +96,7 @@ type RegxConfig = {
   resource: string;
 };
 
-if (!['local'].includes(REACT_APP_ENV || 'dev')) {
+if (!['local', 'dev'].includes(REACT_APP_ENV || 'dev')) {
   umiConfig.chainWebpack = (config, { webpack }) => {
     config.merge({
       optimization: {

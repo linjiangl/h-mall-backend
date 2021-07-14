@@ -29,16 +29,6 @@ const LoginMessage: React.FC<{
   />
 );
 
-/** 此方法会跳转到 redirect 参数所在的位置 */
-const goto = () => {
-  if (!history) return;
-  setTimeout(() => {
-    const { query } = history.location;
-    const { redirect } = query as { redirect: string };
-    history.push(redirect || '/');
-  }, 10);
-};
-
 const Login: React.FC = () => {
   const [submitting, setSubmitting] = useState(false);
   const [userLoginState, setUserLoginState] = useState<API.LoginStateType>({});
@@ -47,14 +37,14 @@ const Login: React.FC = () => {
 
   const intl = useIntl();
 
-  const fetchUserInfo = async (token: string) => {
-    const userInfo = await initialState?.fetchUserInfo?.(token);
+  const fetchUserInfo = async () => {
+    const userInfo = await initialState?.fetchUserInfo?.();
 
     if (userInfo) {
-      setInitialState({
-        ...initialState,
+      await setInitialState((s) => ({
+        ...s,
         currentUser: userInfo,
-      });
+      }));
     }
   };
 
@@ -64,14 +54,18 @@ const Login: React.FC = () => {
       // 登录
       const response = await login({ ...values, type });
       if (response && Object.prototype.hasOwnProperty.call(response, 'token')) {
-        setAuthorizeToken(response.token);
         const defaultloginSuccessMessage = intl.formatMessage({
           id: 'pages.login.success',
           defaultMessage: '登录成功！',
         });
         message.success(defaultloginSuccessMessage);
-        await fetchUserInfo(response.token);
-        goto();
+        setAuthorizeToken(response.token);
+        await fetchUserInfo();
+        /** 此方法会跳转到 redirect 参数所在的位置 */
+        if (!history) return;
+        const { query } = history.location;
+        const { redirect } = query as { redirect: string };
+        history.push(redirect || '/');
         return;
       }
       // 如果失败去设置用户错误信息
@@ -81,12 +75,11 @@ const Login: React.FC = () => {
         currentAuthority: 'admin',
       });
     } catch (error) {
-      const defaultloginFailureMessage = intl.formatMessage({
-        id: 'pages.login.failure',
-        defaultMessage: '登录失败，请重试！',
-      });
-
-      message.error(defaultloginFailureMessage);
+      // const defaultloginFailureMessage = intl.formatMessage({
+      //   id: 'pages.login.failure',
+      //   defaultMessage: '登录失败，请重试！',
+      // });
+      // message.error(defaultloginFailureMessage);
     }
     setSubmitting(false);
   };

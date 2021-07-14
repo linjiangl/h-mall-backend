@@ -2,13 +2,14 @@ import type { Settings as LayoutSettings } from '@ant-design/pro-layout';
 import { PageLoading } from '@ant-design/pro-layout';
 import { notification, message } from 'antd';
 import type { RequestConfig, RunTimeLayoutConfig } from 'umi';
+import type { ResponseError } from 'umi-request';
 import { history, Link } from 'umi';
 import RightContent from '@/components/RightContent';
 import Footer from '@/components/Footer';
 import { queryCurrentUser } from '@/services/server/user';
 import { BookOutlined, LinkOutlined } from '@ant-design/icons';
 import { getEnvConfig } from '@/utils/env';
-import { getAuthorizeToken, removeAuthorizeToken, buildRouteUrl } from '@/utils/utils';
+import { removeAuthorizeToken, buildRouteUrl } from '@/utils/utils';
 
 const isDev = process.env.NODE_ENV === 'development';
 const loginPath = buildRouteUrl(getEnvConfig().loginUrl);
@@ -24,11 +25,11 @@ export const initialStateConfig = {
 export async function getInitialState(): Promise<{
   settings?: Partial<LayoutSettings>;
   currentUser?: API.CurrentUser;
-  fetchUserInfo?: (token: string) => Promise<API.CurrentUser | undefined>;
+  fetchUserInfo?: () => Promise<API.CurrentUser | undefined>;
 }> {
-  const fetchUserInfo = async (token: string) => {
+  const fetchUserInfo = async () => {
     try {
-      const currentUser = await queryCurrentUser(token);
+      const currentUser = await queryCurrentUser();
       return currentUser;
     } catch (error) {
       history.push(loginPath);
@@ -37,7 +38,7 @@ export async function getInitialState(): Promise<{
   };
   // 如果是登录页面，不执行
   if (history.location.pathname !== loginPath) {
-    const currentUser = await fetchUserInfo('');
+    const currentUser = await fetchUserInfo();
     return {
       fetchUserInfo,
       currentUser,
@@ -89,7 +90,7 @@ export async function getInitialState(): Promise<{
  * @see https://beta-pro.ant.design/docs/request-cn
  */
 export const request: RequestConfig = {
-  errorHandler: (error: any) => {
+  errorHandler: (error: ResponseError) => {
     const { response } = error;
 
     if (!response) {
@@ -98,14 +99,12 @@ export const request: RequestConfig = {
         message: '网络异常',
       });
     }
-    throw error;
+
+    return Promise.resolve(response);
   },
   credentials: 'include', // 默认请求是否带上cookie,
-  requestType: 'form',
+  requestType: 'json',
   timeout: 5000,
-  headers: {
-    Authorization: getAuthorizeToken(),
-  },
   responseInterceptors: [
     async (response: Response) => {
       const blob = await response.clone().blob();

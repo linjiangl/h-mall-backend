@@ -58,7 +58,7 @@ const ListTable: React.FC = () => {
     },
     {
       title: '登录时间',
-      dataIndex: 'created_time[]',
+      dataIndex: 'created_time',
       align: 'center',
       valueType: 'dateRange',
       render: (_, row) => <>{formatDate(row.created_time || 0)}</>,

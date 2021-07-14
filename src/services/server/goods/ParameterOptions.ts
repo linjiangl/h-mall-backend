@@ -1,11 +1,4 @@
-import {
-  queryList,
-  queryInfo,
-  created,
-  updated,
-  deleted,
-  requestPropertyToArray,
-} from '@/utils/request';
+import { queryList, queryInfo, created, updated, deleted } from '@/utils/request';
 
 export async function list(params: API.TableRequestParams) {
   return queryList('/parameterOptions/list', params);
@@ -16,11 +9,11 @@ export async function info(id: number) {
 }
 
 export async function create(data: Parameter.Options) {
-  return created('/parameterOptions/create', requestPropertyToArray('values', data as Record<string, React.Key[]>));
+  return created('/parameterOptions/create', data);
 }
 
 export async function update(data: Parameter.Options) {
-  return updated('/parameterOptions/update', requestPropertyToArray('values', data as Record<string, React.Key[]>));
+  return updated('/parameterOptions/update', data);
 }
 
 export async function remove(id: number) {
