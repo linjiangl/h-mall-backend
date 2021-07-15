@@ -1,17 +1,17 @@
-import Big from 'big.js';
+import Decimal from 'decimal.js';
 
 export const bcadd = (x: number, y: number, scale: number = 0): string => {
-  return (new Big(x)).plus(new Big(y)).toFixed(scale);
+  return Decimal.add(x, y).toFixed(scale);
 };
 
 export const bcsub = (x: number, y: number, scale: number = 0): string => {
-  return (new Big(x)).minus(new Big(y)).toFixed(scale);
+  return Decimal.sub(x, y).toFixed(scale);
 };
 
 export const bcmul = (x: number, y: number, scale: number = 0): string => {
-  return (new Big(x)).times(new Big(y)).toFixed(scale);
+  return Decimal.mul(x, y).toFixed(scale);
 };
 
 export const bcdiv = (x: number, y: number, scale: number = 0): string => {
-  return (new Big(x)).div(new Big(y)).toFixed(scale);
+  return Decimal.div(x, y).toFixed(scale);
 };
