@@ -93,14 +93,22 @@ export const request: RequestConfig = {
   errorHandler: (error: ResponseError) => {
     const { response } = error;
 
-    if (!response) {
+    if (response.status >= 500) {
       notification.error({
         description: '您的网络发生异常，无法连接服务器',
         message: '网络异常',
       });
-    }
+    } 
+    
+    if (response.status >= 400) {
+      if (response.status === 401) {
+        throw error;
+      } else {
+        return Promise.resolve(response);
+      }
+    } 
 
-    return Promise.resolve(response);
+    throw error;
   },
   credentials: 'include', // 默认请求是否带上cookie,
   requestType: 'json',
