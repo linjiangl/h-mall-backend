@@ -86,9 +86,9 @@ const ListTable: React.FC = () => {
       dataIndex: 'values',
       align: 'center',
       render: (_, record) =>
-        record.values?.map((item) => {
+        record.values?.map((item, index) => {
           return (
-            <Tag color="#108ee9" key={record.id}>
+            <Tag color="#108ee9" key={index}>
               {item}
             </Tag>
           );

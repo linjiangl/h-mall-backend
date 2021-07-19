@@ -98,15 +98,15 @@ export const request: RequestConfig = {
         description: '您的网络发生异常，无法连接服务器',
         message: '网络异常',
       });
-    } 
-    
+    }
+
     if (response.status >= 400) {
       if (response.status === 401) {
         throw error;
       } else {
         return Promise.resolve(response);
       }
-    } 
+    }
 
     throw error;
   },
@@ -139,7 +139,7 @@ export const layout: RunTimeLayoutConfig = ({ initialState }) => {
     rightContentRender: () => <RightContent />,
     disableContentMargin: false,
     waterMarkProps: {
-      content: initialState?.currentUser?.username,
+      content: 'h-mall',
     },
     footerRender: () => <Footer />,
     onPageChange: () => {

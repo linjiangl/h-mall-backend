@@ -30,7 +30,7 @@ const SkuMultiple: React.FC<ParamsProps> = (props) => {
       id: 0,
     },
     {
-      id: 0,
+      id: 1,
     },
   ]);
 
@@ -53,7 +53,7 @@ const SkuMultiple: React.FC<ParamsProps> = (props) => {
 
       {sku.map((item, index) => {
         return (
-          <ProForm.Item key={item.id} label={`规格项${index + 1}`}>
+          <ProForm.Item key={index} label={`规格项${index + 1}`}>
             <SkuSpec />
           </ProForm.Item>
         );

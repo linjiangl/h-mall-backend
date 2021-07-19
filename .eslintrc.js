@@ -5,4 +5,12 @@ module.exports = {
     page: true,
     REACT_APP_ENV: true,
   },
+  overrides: [
+    {
+      rules: {
+        'no-plusplus': 'off',
+        'react/no-array-index-key': 'off',
+      },
+    },
+  ],
 };
