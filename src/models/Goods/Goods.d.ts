@@ -1,6 +1,6 @@
 declare namespace Goods {
   export type GoodsType = 'general' | 'virtual';
-  export type GoodsStatus = -1 | 0 | 1;
+  export type GoodsStatus = 0 | 1;
 
   export type Detail = {
     id?: number;
@@ -42,12 +42,13 @@ declare namespace Goods {
   export type Attribute = {
     id?: number;
     goods_id?: number;
-    goods_unit?: string;
-    goods_weight?: number;
-    goods_volume?: number;
-    goods_service_ids?: string;
+    is_spec_open?: Common.Boolean;
+    unit?: string;
+    weight?: number;
+    volume?: number;
+    service_ids?: number[];
     parameter?: string;
-    goods_content?: content;
+    content?: content;
     created_time?: number;
     updated_time?: number;
   };
@@ -55,8 +56,8 @@ declare namespace Goods {
   export type Timer = {
     id?: number;
     goods_id?: number;
-    on?: number;
-    off?: number;
+    on?: Common.Boolean;
+    off?: Common.Boolean;
     on_time?: number;
     off_time?: number;
     created_time?: number;
@@ -70,12 +71,6 @@ declare namespace Goods {
     value?: string;
     created_time?: number;
     updated_time?: number;
-  };
-
-  export type Spec = {
-    id?: number;
-    goods_id?: number;
-    spec_id?: number;
   };
 
   export type Sku = {
@@ -92,6 +87,9 @@ declare namespace Goods {
     clicks?: number;
     sales?: number;
     virtual_sales?: number;
+    weight?: number;
+    volume?: number;
+    is_default?: Common.Boolean;
     image?: string;
     created_time?: number;
     updated_time?: number;

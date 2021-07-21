@@ -1,11 +1,11 @@
 import React, { useEffect, useState } from 'react';
-import { Form, Checkbox, Button, Space } from 'antd';
+import { Form, Checkbox, Button } from 'antd';
 import type { CheckboxOptionType } from 'antd/lib/checkbox/Group';
 import { all } from '@/services/server/goods/service';
 import FormPage from '@/pages/goods/service/components/FormPage';
 
 type ParamsProps = {
-  // 
+  //
 };
 
 const FormService: React.FC<ParamsProps> = () => {
@@ -29,9 +29,10 @@ const FormService: React.FC<ParamsProps> = () => {
 
   return (
     <>
-      <Form.Item name="service" label="商品服务">
-        <Space>
-          <Checkbox.Group options={list} defaultValue={['Apple']} />
+      <Form.Item
+        name={['attribute', 'service_ids']}
+        label="商品服务"
+        help={
           <Button
             type="link"
             size="small"
@@ -41,7 +42,9 @@ const FormService: React.FC<ParamsProps> = () => {
           >
             新增服务
           </Button>
-        </Space>
+        }
+      >
+        <Checkbox.Group options={list} />
       </Form.Item>
 
       {formVisible && <FormPage onCancel={setFormVisible} formVisible={formVisible} detail={{}} />}

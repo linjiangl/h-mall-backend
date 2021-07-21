@@ -47,10 +47,6 @@ const SkuMultiple: React.FC<ParamsProps> = (props) => {
 
   return (
     <>
-      <ProForm.Item {...tailFormItemLayout}>
-        <a>创建新规格</a>
-      </ProForm.Item>
-
       {sku.map((item, index) => {
         return (
           <ProForm.Item key={index} label={`规格项${index + 1}`}>
@@ -64,6 +60,7 @@ const SkuMultiple: React.FC<ParamsProps> = (props) => {
           <Button type="primary" onClick={handleAddSku}>
             添加规格
           </Button>
+          <Button type="link">创建新规格</Button>
         </ProForm.Item>
       )}
 

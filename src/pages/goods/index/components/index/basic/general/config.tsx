@@ -5,11 +5,10 @@ import FormService from '../common/service';
 import FormStatus from '../common/status';
 
 type ParamsProps = {
-  // 
+  //
 };
 
 const FormConfig: React.FC<ParamsProps> = () => {
-
   return (
     <>
       <FormService />

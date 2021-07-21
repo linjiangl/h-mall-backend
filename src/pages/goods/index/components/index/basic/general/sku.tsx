@@ -9,12 +9,12 @@ type ParamsProps = {
 };
 
 const FormConfig: React.FC<ParamsProps> = () => {
-  const [visible, setVisible] = useState<boolean>(false);
+  const [visible, setVisible] = useState<boolean>(true);
 
   return (
     <>
       <ProForm.Item label="启用多规格">
-        <Switch onChange={setVisible} />
+        <Switch onChange={setVisible} checked={visible} />
       </ProForm.Item>
 
       {visible ? <SkuMultiple /> : <SkuDefault />}

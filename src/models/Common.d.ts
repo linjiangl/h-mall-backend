@@ -12,9 +12,14 @@ declare namespace Common {
     full_path: string;
   };
 
-  export type IValueEnum = Record<string, | React.ReactNode
-| {
-    text: React.ReactNode;
-    status: 'Success' | 'Error' | 'Processing' | 'Warning' | 'Default';
-  }>;
+  export type Boolean = 0 | 1;
+
+  export type IValueEnum = Record<
+    string,
+    | React.ReactNode
+    | {
+        text: React.ReactNode;
+        status: 'Success' | 'Error' | 'Processing' | 'Warning' | 'Default';
+      }
+  >;
 }

@@ -16,7 +16,7 @@ enum TabKeys {
 }
 
 type ParamsProps = {
-  // 
+  //
 };
 
 const defaultValues: Form.Goods = {
@@ -35,7 +35,9 @@ const defaultValues: Form.Goods = {
   recommend_way: 0,
   status: 1,
   attribute: {
-    goods_content: '',
+    content: '',
+    is_spec_open: 1,
+    service_ids: [],
   },
   timer: {
     on: 1,
@@ -79,8 +81,8 @@ const FormPage: React.FC<ParamsProps> = () => {
         onFinish={async (values) => {
           console.log({
             ...values,
-            type: defaultValues.type
-          })
+            type: defaultValues.type,
+          });
           message.success('提交成功');
         }}
         initialValues={detail}
@@ -98,7 +100,7 @@ const FormPage: React.FC<ParamsProps> = () => {
             />
           </TabPane>
           <TabPane tab="商品详情" key={TabKeys.content} forceRender>
-            <Form.Item name={['attribute', 'goods_content']} label="商品详情">
+            <Form.Item name={['attribute', 'content']} label="商品详情">
               <FormContent />
             </Form.Item>
           </TabPane>
