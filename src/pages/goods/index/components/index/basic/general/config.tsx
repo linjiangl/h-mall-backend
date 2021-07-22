@@ -4,11 +4,7 @@ import FormNumber from '@/components/Tools/Form/number';
 import FormService from '../common/service';
 import FormStatus from '../common/status';
 
-type ParamsProps = {
-  //
-};
-
-const FormConfig: React.FC<ParamsProps> = () => {
+const FormConfig: React.FC = () => {
   return (
     <>
       <FormService />
@@ -55,7 +51,7 @@ const FormConfig: React.FC<ParamsProps> = () => {
         help="起售数量超出商品库存时，买家无法购买该商品"
       />
 
-      <ProFormText name="unit" label="单位" width="xs" />
+      <ProFormText name={['attribute', 'unit']} label="单位" width="xs" />
 
       <FormStatus />
 

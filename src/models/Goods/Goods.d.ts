@@ -42,7 +42,7 @@ declare namespace Goods {
   export type Attribute = {
     id?: number;
     goods_id?: number;
-    is_spec_open?: Common.Boolean;
+    is_open_spec?: Common.Boolean;
     unit?: string;
     weight?: number;
     volume?: number;

@@ -41,8 +41,6 @@ const FormBasic: React.FC<ParamsProps> = (props) => {
           case CollapseType.config:
             component = <GeneralConfig />;
             break;
-          default:
-            break;
         }
         break;
       case 'virtual':
@@ -56,11 +54,7 @@ const FormBasic: React.FC<ParamsProps> = (props) => {
           case CollapseType.config:
             component = <VirtualConfig />;
             break;
-          default:
-            break;
         }
-        break;
-      default:
         break;
     }
 

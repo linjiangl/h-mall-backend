@@ -36,7 +36,7 @@ const defaultValues: Form.Goods = {
   status: 1,
   attribute: {
     content: '',
-    is_spec_open: 1,
+    is_open_spec: 1,
     service_ids: [],
   },
   timer: {
