@@ -44,7 +44,11 @@ const FormService: React.FC<ParamsProps> = () => {
           </Button>
         }
       >
-        <Checkbox.Group options={list} />
+        {list.length ? (
+          <Checkbox.Group options={list} />
+        ) : (
+          <span style={{ paddingLeft: '8px' }}>还没创建服务，请创建之后再选择！</span>
+        )}
       </Form.Item>
 
       {formVisible && <FormPage onCancel={setFormVisible} formVisible={formVisible} detail={{}} />}

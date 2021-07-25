@@ -12,7 +12,12 @@ const FormConfig: React.FC = () => {
   return (
     <>
       <ProForm.Item name={['attribute', 'is_open_spec']} label="启用多规格">
-        <Switch onChange={setVisible} checkedChildren="开启" unCheckedChildren="关闭" />
+        <Switch
+          checked={visible}
+          checkedChildren="开启"
+          unCheckedChildren="关闭"
+          onChange={setVisible}
+        />
       </ProForm.Item>
 
       {visible ? <SkuMultiple /> : <SkuDefault />}

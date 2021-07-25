@@ -1,6 +1,7 @@
 declare namespace Goods {
   export type GoodsType = 'general' | 'virtual';
   export type GoodsStatus = 0 | 1;
+  export type RefundType = 'all' | 'money' | 'refuse';
 
   export type Detail = {
     id?: number;
@@ -29,8 +30,8 @@ declare namespace Goods {
     is_free_shipping?: number;
     buy_max?: number;
     buy_min?: number;
-    refund_type?: string;
-    images?: string;
+    refund_type?: RefundType;
+    images?: string[];
     video_url?: string;
     created_time?: number;
     updated_time?: number;

@@ -37,7 +37,7 @@ const FormBase: React.FC<ParamsProps> = () => {
         name="images"
         label="商品主图"
         help="第一张图片将作为商品主图，支持同时上传多张图片，多张图片之间可随意调整位置；支持jpg、gif、png格式上传或从图片空间中选择，建议使用尺寸800x800像素以上、大小不超过1M的正方形图片，上传后的图片将会自动保存在图片空间的默认分类中，最多上传10张（至少1张）"
-        rules={[{ required: false, type: 'string', max: 255 }]}
+        rules={[{ required: false, type: 'array', max: 255 }]}
       >
         <ImageNultiple max={2} />
       </ProForm.Item>

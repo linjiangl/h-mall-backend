@@ -4,7 +4,7 @@ import type { Rule } from 'antd/lib/form';
 
 type ParamsProps = {
   value?: number;
-  name?: string;
+  name?: string | string[];
   label?: string;
   min?: number;
   max?: number;

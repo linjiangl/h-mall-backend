@@ -1,9 +1,10 @@
 import React, { useState, useEffect } from 'react';
 import { Tabs, message, Form, Space, Button } from 'antd';
-import { FooterToolbar } from '@ant-design/pro-layout';
 import ProForm from '@ant-design/pro-form';
-import { toDatePicker } from '@/utils/utils';
 import GoodsContext from '@/contexts/goods';
+import { toDatePicker } from '@/utils/utils';
+import { create } from '@/services/server/goods';
+import { FooterToolbar } from '@ant-design/pro-layout';
 import FormBasic from './basic';
 import FormContent from './content';
 
@@ -24,19 +25,30 @@ const defaultValues: Form.Goods = {
   shop_id: 0,
   user_id: 0,
   category_ids: [1, 2],
+  category_id: 0,
   brand_id: 0,
   sku_id: 0,
-  type: 'general',
   name: '',
+  sale_price: 0,
+  market_price: 0,
+  cost_price: 0,
+  achieve_price: 0,
   introduction: '',
   keywords: '',
+  type: 'general',
+  virtual_sales: 0,
+  status: 1,
+  recommend_way: 0,
   is_consume_discount: 0,
   is_on_sale: 0,
-  recommend_way: 0,
-  status: 1,
+  buy_max: 0,
+  buy_min: 0,
+  refund_type: 'all',
+  images: [],
+  video_url: '',
   attribute: {
     content: '',
-    is_open_spec: 1,
+    is_open_spec: 0,
     service_ids: [],
   },
   timer: {
@@ -79,11 +91,15 @@ const FormPage: React.FC<ParamsProps> = () => {
           ),
         }}
         onFinish={async (values) => {
-          console.log({
+          create({
             ...values,
+            category_id: values.category_ids[1],
             type: defaultValues.type,
-          });
-          message.success('提交成功');
+          })
+            .then((res) => {
+              message.success('提交成功');
+            })
+            .catch(() => {});
         }}
         initialValues={detail}
         layout="horizontal"
