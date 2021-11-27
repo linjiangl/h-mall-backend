@@ -33,7 +33,7 @@ const ImageSingle: React.FC<ImageSingleProps> = (props) => {
       return;
     }
     if (info.file.status === 'done') {
-      const data: Common.Upload = info.file.response;
+      const data: Common.Upload = info.file.response.data;
       data.full_path = data.full_path.replace(/http(s)?:/i, '');
       setLoading(false);
       setImagePath(data.full_path);

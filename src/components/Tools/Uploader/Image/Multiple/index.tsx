@@ -27,8 +27,8 @@ const ImageMultiple: React.FC<ImageSingleProps> = (props) => {
       let fullPath: string = '';
       if (item.url) {
         fullPath = item.url;
-      } else if (item.response && item.response.full_path) {
-        fullPath = item.response.full_path;
+      } else if (item.response.data && item.response.data.full_path) {
+        fullPath = item.response.data.full_path;
         fullPath = fullPath.replace(/http(s)?:/i, '');
       }
       if (fullPath) {
@@ -81,7 +81,7 @@ const ImageMultiple: React.FC<ImageSingleProps> = (props) => {
       setFileList(tmpFileList);
       handleResult(tmpFileList);
     }
-  // eslint-disable-next-line react-hooks/exhaustive-deps
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   const uploadButton = <div>{loading ? <LoadingOutlined /> : <PlusOutlined />}</div>;
