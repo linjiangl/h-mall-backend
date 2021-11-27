@@ -118,9 +118,9 @@ export const request: RequestConfig = {
       const blob = await response.clone().blob();
       if (blob.type === 'application/json') {
         blob.text().then((res) => {
+          const data = JSON.parse(res);
           if (response.status >= 400) {
-            const data = JSON.parse(res);
-            message.error(data.error);
+            message.error(data.message);
             if (response.status === 401) {
               removeAuthorizeToken();
               history.push(loginPath);

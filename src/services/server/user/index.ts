@@ -1,7 +1,7 @@
 import { queryList, updated, queryInfo, http } from '@/utils/request';
 
 export async function list(requestParams: API.TableRequestParams) {
-  return queryList('/user/list', requestParams);
+  return queryList('/user/paginate', requestParams);
 }
 
 export async function info(id: number) {

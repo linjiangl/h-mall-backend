@@ -1,11 +1,11 @@
 import { queryList, queryInfo, created, updated, deleted } from '@/utils/request';
 
 export async function list(params: API.TableRequestParams) {
-  return queryList('/parameter/list', params);
+  return queryList('/parameter/paginate', params);
 }
 
 export async function info(id: number) {
-  return queryInfo('/parameter/detail', id);
+  return queryInfo('/parameter/info', id);
 }
 
 export async function create(data: Parameter.Detail) {

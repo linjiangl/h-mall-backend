@@ -75,7 +75,11 @@ export async function http(url: string, data: Common.Object = {}) {
     headers: {
       Authorization: getAuthorizeToken(),
     },
-  });
+  })
+    .then((res) => {
+      return res.data;
+    })
+    .catch(() => {});
 }
 
 export async function queryList(

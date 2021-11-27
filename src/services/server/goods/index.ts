@@ -11,11 +11,11 @@ export enum GoodsTimerStatus {
 }
 
 export async function list(params: API.TableRequestParams) {
-  return queryList('/goods/list', params);
+  return queryList('/goods/paginate', params);
 }
 
 export async function info(id: number) {
-  return queryInfo('/goods/detail', id);
+  return queryInfo('/goods/info', id);
 }
 
 export async function create(data: Goods.Detail) {

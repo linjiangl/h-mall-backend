@@ -6,9 +6,9 @@ export enum LogType {
 }
 
 export async function list(params: API.TableRequestParams, type: LogType) {
-  let url = '/adminLogin/list';
+  let url = '/adminLogin/paginate';
   if (type == LogType.Action) {
-    url = '/adminAction/list';
+    url = '/adminAction/paginate';
   }
   return queryList(url, params);
 }

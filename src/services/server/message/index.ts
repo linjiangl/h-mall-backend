@@ -1,7 +1,7 @@
 import { http, queryList, queryInfo, created, updated, deleted } from '@/utils/request';
 
 export async function list(params: API.TableRequestParams) {
-  return queryList('/message/list', params);
+  return queryList('/message/paginate', params);
 }
 
 export async function announce(requestParams: API.TableRequestParams) {
@@ -25,7 +25,7 @@ export async function remind(requestParams: API.TableRequestParams) {
 }
 
 export async function info(id: number) {
-  return queryInfo('/message/detail', id);
+  return queryInfo('/message/info', id);
 }
 
 export async function create(data: Message.Detail) {
