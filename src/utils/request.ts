@@ -79,7 +79,9 @@ export async function http(url: string, data: Common.Object = {}) {
     .then((res) => {
       return Promise.resolve(res.data);
     })
-    .catch(() => {});
+    .catch((err) => {
+      return Promise.reject(err.data);
+    });
 }
 
 export async function queryList(
