@@ -90,7 +90,7 @@ export async function getInitialState(): Promise<{
  * @see https://beta-pro.ant.design/docs/request-cn
  */
 export const request: RequestConfig = {
-  errorHandler: (error: ResponseError) => {
+  errorHandler: async (error: ResponseError) => {
     const { response } = error;
 
     if (response.status >= 500) {
@@ -100,15 +100,14 @@ export const request: RequestConfig = {
       });
     }
 
-    if (response.status >= 400) {
-      if (response.status === 401) {
-        throw error;
-      } else {
-        return Promise.resolve(response);
-      }
+    const blob = await response.clone().blob();
+    if (blob.type === 'application/json') {
+      return blob.text().then((res) => {
+        return Promise.reject(JSON.parse(res));
+      });
+    } else {
+      return Promise.reject(response);
     }
-
-    throw error;
   },
   credentials: 'include', // 默认请求是否带上cookie,
   requestType: 'json',
@@ -120,7 +119,7 @@ export const request: RequestConfig = {
         blob.text().then((res) => {
           const data = JSON.parse(res);
           if (response.status >= 400) {
-            message.error(data.message);
+            message.error(data.errorMessage);
             if (response.status === 401) {
               removeAuthorizeToken();
               history.push(loginPath);

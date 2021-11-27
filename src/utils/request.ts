@@ -77,7 +77,7 @@ export async function http(url: string, data: Common.Object = {}) {
     },
   })
     .then((res) => {
-      return res.data;
+      return Promise.resolve(res.data);
     })
     .catch(() => {});
 }

@@ -24,7 +24,9 @@ const FormPage: React.FC<ParamsProps> = (props) => {
           message.success('修改成功');
           onCancel(false, true);
         })
-        .catch(() => {});
+        .catch((error) => {
+          console.log(error);
+        });
     }
   };
 
