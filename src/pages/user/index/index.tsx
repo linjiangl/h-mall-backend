@@ -3,7 +3,7 @@ import { PageContainer } from '@ant-design/pro-layout';
 import ProTable from '@ant-design/pro-table';
 import type { ProColumns, ActionType } from '@ant-design/pro-table';
 import { Button, Avatar } from 'antd';
-import { list } from '@/services/server/user';
+import { paginate } from '@/services/server/user';
 import { formatDate } from '@/utils/utils';
 import { bcadd } from '@/utils/math';
 import DefaultAvatar from '@/assets/default/avatar.png';
@@ -123,7 +123,7 @@ const ListTable: React.FC = () => {
         headerTitle="用户列表"
         actionRef={ref}
         rowKey="id"
-        request={(params, sort, filter) => list({ params, sort, filter })}
+        request={(params, sort, filter) => paginate({ params, sort, filter })}
         columns={columns}
         bordered
       />

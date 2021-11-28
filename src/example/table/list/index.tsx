@@ -3,7 +3,7 @@ import { PageContainer } from '@ant-design/pro-layout';
 import ProTable from '@ant-design/pro-table';
 import type { ProColumns, ActionType } from '@ant-design/pro-table';
 import { message, Space } from 'antd';
-import { list, remove } from '@/services/server/goods/category';
+import { paginate, remove } from '@/services/server/goods/category';
 import { formatDate } from '@/utils/utils';
 import ConfirmDelete from '@/components/Tools/Modal/confirm/delete';
 
@@ -80,7 +80,7 @@ const ListTable: React.FC = () => {
         actionRef={ref}
         rowKey="id"
         bordered
-        request={(params, sort, filter) => list({ params, sort, filter })}
+        request={(params, sort, filter) => paginate({ params, sort, filter })}
         columns={columns}
       />
     </PageContainer>

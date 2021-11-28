@@ -5,7 +5,7 @@ export enum LogType {
   Action = 'action',
 }
 
-export async function list(params: API.TableRequestParams, type: LogType) {
+export async function paginate(params: API.TableRequestParams, type: LogType) {
   let url = '/adminLogin/paginate';
   if (type == LogType.Action) {
     url = '/adminAction/paginate';

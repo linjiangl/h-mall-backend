@@ -10,7 +10,7 @@ export enum GoodsTimerStatus {
   OFF = 0,
 }
 
-export async function list(params: API.TableRequestParams) {
+export async function paginate(params: API.TableRequestParams) {
   return queryList('/goods/paginate', params);
 }
 

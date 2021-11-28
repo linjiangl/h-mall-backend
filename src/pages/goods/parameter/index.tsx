@@ -4,7 +4,7 @@ import ProTable from '@ant-design/pro-table';
 import type { ProColumns, ActionType } from '@ant-design/pro-table';
 import { Button, message, Space } from 'antd';
 import { Link } from 'umi';
-import { list, remove } from '@/services/server/goods/parameter';
+import { paginate, remove } from '@/services/server/goods/parameter';
 import { formatDate } from '@/utils/utils';
 import { PlusOutlined } from '@ant-design/icons';
 import FromPage from './components/ParameterForm';
@@ -104,7 +104,7 @@ const ListTable: React.FC = () => {
             actionRef={ref}
             rowKey="id"
             bordered
-            request={(params, sort, filter) => list({ params, sort, filter })}
+            request={(params, sort, filter) => paginate({ params, sort, filter })}
             columns={columns}
             toolBarRender={() => [
               <Button type="primary" key="created" onClick={beforeCreated}>

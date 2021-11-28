@@ -1,6 +1,6 @@
 import { http, queryList, queryInfo, created, updated, deleted } from '@/utils/request';
 
-export async function list(params: API.TableRequestParams) {
+export async function paginate(params: API.TableRequestParams) {
   return queryList('/specValue/paginate', params);
 }
 

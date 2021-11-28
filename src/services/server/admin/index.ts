@@ -1,6 +1,6 @@
 import { queryList, queryInfo, created, updated } from '@/utils/request';
 
-export async function list(params: API.TableRequestParams) {
+export async function paginate(params: API.TableRequestParams) {
   return queryList('/admin/paginate', params);
 }
 

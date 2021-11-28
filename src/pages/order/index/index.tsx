@@ -3,7 +3,7 @@ import { PageContainer } from '@ant-design/pro-layout';
 import ProTable from '@ant-design/pro-table';
 import type { ProColumns, ActionType } from '@ant-design/pro-table';
 import { Button, message } from 'antd';
-import { list, remove } from '@/services/server/goods/category';
+import { paginate, remove } from '@/services/server/goods/category';
 
 const ListTable: React.FC = () => {
   const ref = useRef<ActionType>();
@@ -60,7 +60,7 @@ const ListTable: React.FC = () => {
         headerTitle="分类列表"
         actionRef={ref}
         rowKey="id"
-        request={(params, sort, filter) => list({ params, sort, filter })}
+        request={(params, sort, filter) => paginate({ params, sort, filter })}
         columns={columns}
       />
     </PageContainer>

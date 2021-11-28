@@ -3,7 +3,7 @@ import { PageContainer } from '@ant-design/pro-layout';
 import ProTable from '@ant-design/pro-table';
 import type { ProColumns, ActionType } from '@ant-design/pro-table';
 import { message, Alert, Button } from 'antd';
-import { list, remove, LogType } from '@/services/server/admin/logs';
+import { paginate, remove, LogType } from '@/services/server/admin/logs';
 import { formatDate } from '@/utils/utils';
 import BatchAction from '@/components/Tools/Table/Footer/BatchAction';
 import ConfirmDelete from '@/components/Tools/Modal/confirm/delete';
@@ -121,7 +121,7 @@ const ListTable: React.FC = () => {
         bordered
         rowSelection={rowSelection}
         request={(params, sort, filter) => {
-          return list({ params, sort, filter }, LogType.Action)
+          return paginate({ params, sort, filter }, LogType.Action)
             .then((res) => {
               setDataSource(res.data);
               return Promise.resolve(res);

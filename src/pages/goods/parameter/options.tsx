@@ -3,7 +3,7 @@ import { PageContainer } from '@ant-design/pro-layout';
 import ProTable from '@ant-design/pro-table';
 import type { ProColumns, ActionType } from '@ant-design/pro-table';
 import { Button, message, Space, Tag } from 'antd';
-import { list, remove } from '@/services/server/goods/ParameterOptions';
+import { paginate, remove } from '@/services/server/goods/ParameterOptions';
 import { PlusOutlined } from '@ant-design/icons';
 import { info as parameterDetail } from '@/services/server/goods/parameter';
 import { getPageQuery, parmasValidationFailed } from '@/utils/utils';
@@ -138,7 +138,7 @@ const ListTable: React.FC = () => {
             bordered
             search={false}
             request={(params, sort, filter) =>
-              list({ params: { ...params, parameter_id: parameterId }, sort, filter })
+              paginate({ params: { ...params, parameter_id: parameterId }, sort, filter })
             }
             columns={columns}
             toolBarRender={() => [

@@ -4,7 +4,7 @@ import ProTable from '@ant-design/pro-table';
 import type { ProColumns, ActionType, ColumnsState } from '@ant-design/pro-table';
 import { Button, Avatar } from 'antd';
 import { formatDate } from '@/utils/utils';
-import { list } from '@/services/server/admin';
+import { paginate } from '@/services/server/admin';
 import DefaultAvatar from '@/assets/default/avatar.png';
 import FormPage from './components/FormPage';
 
@@ -107,7 +107,7 @@ const ListTable: React.FC = () => {
         actionRef={ref}
         rowKey="id"
         bordered
-        request={(params, sort, filter) => list({ params, sort, filter })}
+        request={(params, sort, filter) => paginate({ params, sort, filter })}
         columns={columns}
         columnsStateMap={columnsStateMap}
         onColumnsStateChange={(map) => setColumnsStateMap(map)}

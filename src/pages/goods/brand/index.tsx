@@ -4,7 +4,7 @@ import ProTable from '@ant-design/pro-table';
 import type { ProColumns, ActionType } from '@ant-design/pro-table';
 import { Button, message, Space } from 'antd';
 import { formatDate } from '@/utils/utils';
-import { list, remove } from '@/services/server/goods/brand';
+import { paginate, remove } from '@/services/server/goods/brand';
 import { PlusOutlined } from '@ant-design/icons';
 import FormPage from './components/FormPage';
 import ConfirmDelete from '@/components/Tools/Modal/confirm/delete';
@@ -109,7 +109,7 @@ const ListTable: React.FC = () => {
             actionRef={ref}
             rowKey="id"
             bordered
-            request={(params, sort, filter) => list({ params, sort, filter })}
+            request={(params, sort, filter) => paginate({ params, sort, filter })}
             columns={columns}
             toolBarRender={() => [
               <Button type="primary" key="created" onClick={beforeCreated}>

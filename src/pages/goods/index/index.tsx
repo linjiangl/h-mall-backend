@@ -3,7 +3,7 @@ import { PageContainer } from '@ant-design/pro-layout';
 import ProTable from '@ant-design/pro-table';
 import type { ProColumns, ActionType } from '@ant-design/pro-table';
 import { Button, Dropdown, Menu, message, Space, Modal } from 'antd';
-import { list, updateStatus, recycle } from '@/services/server/goods';
+import { paginate, updateStatus, recycle } from '@/services/server/goods';
 import { formatDate } from '@/utils/utils';
 import { DownOutlined, PlusOutlined } from '@ant-design/icons';
 import { Link } from 'umi';
@@ -189,7 +189,7 @@ const ListTable: React.FC = () => {
         bordered
         rowSelection={rowSelection}
         request={(params, sort, filter) => {
-          return list({ params, sort, filter })
+          return paginate({ params, sort, filter })
             .then((res) => {
               setDataSource(res.data);
               return Promise.resolve(res);

@@ -1,11 +1,11 @@
 import { http, queryList, queryInfo, created, updated, deleted } from '@/utils/request';
 
-export async function list(params: API.TableRequestParams) {
+export async function paginate(params: API.TableRequestParams) {
   return queryList('/message/paginate', params);
 }
 
 export async function announce(requestParams: API.TableRequestParams) {
-  return list({
+  return paginate({
     ...requestParams,
     params: {
       ...requestParams.params,
@@ -15,7 +15,7 @@ export async function announce(requestParams: API.TableRequestParams) {
 }
 
 export async function remind(requestParams: API.TableRequestParams) {
-  return list({
+  return paginate({
     ...requestParams,
     params: {
       ...requestParams.params,
