@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { Form, Checkbox, Button } from 'antd';
 import type { CheckboxOptionType } from 'antd/lib/checkbox/Group';
-import { all } from '@/services/server/goods/service';
+import { list as goodsServiceList } from '@/services/server/goods/service';
 import FormPage from '@/pages/goods/service/components/FormPage';
 
 type ParamsProps = {
@@ -13,7 +13,7 @@ const FormService: React.FC<ParamsProps> = () => {
   const [formVisible, setFormVisible] = useState<boolean>(false);
 
   useEffect(() => {
-    all()
+    goodsServiceList()
       .then((res: Service.Detail[]) => {
         const tmp: CheckboxOptionType[] = [];
         res.forEach((item) => {

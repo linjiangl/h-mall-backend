@@ -93,6 +93,10 @@ export async function queryPaginate(
   return http(url, params);
 }
 
+export async function queryList(url: string, params: Common.Object = {}) {
+  return http(url, params);
+}
+
 export async function queryInfo(url: string, id: number, params: Common.Object = {}) {
   return http(url, {
     id,

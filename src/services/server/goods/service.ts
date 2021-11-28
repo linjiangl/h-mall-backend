@@ -1,4 +1,4 @@
-import { queryPaginate, queryInfo, created, updated, deleted, http } from '@/utils/request';
+import { queryPaginate, queryList, queryInfo, created, updated, deleted } from '@/utils/request';
 
 export async function paginate(params: API.TableRequestParams) {
   return queryPaginate('/goodsServiceTemplate/paginate', params);
@@ -20,6 +20,6 @@ export async function remove(id: number) {
   return deleted('/goodsServiceTemplate/delete', id);
 }
 
-export async function all() {
-  return http('/goodsServiceTemplate/all');
+export async function list() {
+  return queryList('/goodsServiceTemplate/list');
 }
