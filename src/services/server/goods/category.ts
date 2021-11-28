@@ -1,7 +1,7 @@
-import { queryList, queryInfo, created, updated, deleted, http } from '@/utils/request';
+import { queryPaginate, queryInfo, created, updated, deleted, http } from '@/utils/request';
 
 export async function paginate(params: API.TableRequestParams) {
-  return queryList('/category/paginate', params);
+  return queryPaginate('/category/paginate', params);
 }
 
 export async function info(id: number) {

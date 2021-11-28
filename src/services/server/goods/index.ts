@@ -1,4 +1,4 @@
-import { queryList, queryInfo, created, updated, http } from '@/utils/request';
+import { queryPaginate, queryInfo, created, updated, http } from '@/utils/request';
 
 export enum GoodsStatus {
   ON_SALES = 1,
@@ -11,7 +11,7 @@ export enum GoodsTimerStatus {
 }
 
 export async function paginate(params: API.TableRequestParams) {
-  return queryList('/goods/paginate', params);
+  return queryPaginate('/goods/paginate', params);
 }
 
 export async function info(id: number) {

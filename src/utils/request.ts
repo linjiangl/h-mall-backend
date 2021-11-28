@@ -84,7 +84,7 @@ export async function http(url: string, data: Common.Object = {}) {
     });
 }
 
-export async function queryList(
+export async function queryPaginate(
   url: string,
   tableRequestParams: API.TableRequestParams,
   dateRange: string[] = ['created_time'],

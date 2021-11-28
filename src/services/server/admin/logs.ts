@@ -1,4 +1,4 @@
-import { queryList, http } from '@/utils/request';
+import { queryPaginate, http } from '@/utils/request';
 
 export enum LogType {
   Login = 'login',
@@ -10,7 +10,7 @@ export async function paginate(params: API.TableRequestParams, type: LogType) {
   if (type == LogType.Action) {
     url = '/adminAction/paginate';
   }
-  return queryList(url, params);
+  return queryPaginate(url, params);
 }
 
 export async function remove(selectIds: number[], type: LogType) {
